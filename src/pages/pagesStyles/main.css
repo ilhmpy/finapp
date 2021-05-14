@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+input, button, select, form {
+  outline: none;
+  display: block;
+  background: 0;
+  border: 0;
+}
+
+textarea {
+  outline: none;
+  border: 0;
+  resize: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  width: 90%;
+  height: inherit;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.clear {
+  border: 1px solid #EB5757;
+}

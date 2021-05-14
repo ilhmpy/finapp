@@ -1,0 +1,280 @@
+.salary {
+  width: 100%;
+  background: #F3F4F8;
+}
+
+.salary__container {
+  padding-top: 10px;
+}
+
+.salary__header {
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  width: 100%;
+  padding: 5px 15px;
+  position: relative;
+  height: 80px;
+}
+
+.salary__header_title {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #E0E0E0;
+  display: flex;
+}
+
+.header_title__text {
+  font-weight: 300;
+  font-size: .80em;
+  color: #3F40F0;
+  margin-right: 70px;
+  margin-top: 7px;
+  margin-left: 5px;
+}
+
+.header_title__btns {
+  display: flex;
+  margin-top: 7px;
+}
+
+.header_title__btn {
+  width: 96px;
+  height: 25px;
+  font-size: .45em;
+  border-radius: 5px;
+  border: 1px solid #E0E0E0;
+}
+
+.salary__header_title img {
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  margin-right: 19px;
+  margin-top: 9px;
+  cursor: pointer;
+}
+
+.activeBtn {
+  border: 1px solid #2F80ED;
+}
+
+.salary__header_categories {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  padding-top: 11px;
+}
+
+.salary__header_category {
+  font-weight: 500;
+  font-size: .45em;
+  display: block;
+  width: 100px;
+  text-align: center;
+  margin-left: 25px;
+}
+
+.salary__header_category:nth-child(1) {
+  width: 320px;
+  margin-left: 0;
+}
+
+.salary__header_category:nth-child(14) {
+  margin-top: -10px;
+}
+
+.salary__header_category:last-child {
+  width: 237px;
+}
+
+.salary__header_category img {
+  position: absolute;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.salary__cards {
+  width: 100%;
+  height: 800px;
+  padding-top: 10px;
+  position: relative;
+}
+
+.salary__cards_card {
+  width: 100%;
+  height: 50px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  display: flex;
+  padding-top: 18px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.salary__cards_card:hover {
+  background: #ECECFE;
+}
+
+.cards_card__item {
+  font-weight: 400;
+  font-size: .45em;
+  text-align: center;
+  display: block;
+  columns: 97px;
+}
+
+.cards_card__item:nth-child(1) {
+  text-align: left;
+  columns: 224px;
+}
+
+.cards_card__item:nth-child(2) {
+  columns: 120px;
+}
+
+.cards_card__item:nth-child(16) {
+  columns: 167px;
+  float: right;
+}
+
+.cards_card__item:nth-child(3) {
+  color: #2F80ED;
+}
+
+.cards_card__item:nth-child(3):hover {
+  text-decoration: underline;
+}
+
+.cards_card__item:nth-child(6):hover {
+  text-decoration: underline;
+  color: #2F80ED;
+}
+
+.cards_card__item:nth-child(16) img {
+  position: absolute;
+  right: 0;
+  margin-right: 16px;
+  margin-top: -4px;
+}
+
+.salary__all {
+  width: 89.3%;
+  height: 40px;
+  display: flex;
+  bottom: 20px;
+  position: fixed;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  padding-top: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: .45em;
+}
+
+.salary__all_items {
+  display: flex;
+  width: 67%;
+}
+
+.salary__all_title {
+  font-weight: 400;
+  margin-right: 20px;
+}
+
+.salary__all_title_box {
+  display: flex;
+  width: 347px;
+}
+
+.salary__all_item {
+  font-weight: 400;
+  text-align: center;
+  columns: 171px;
+  font-size: .99em;
+}
+
+.salary__all_item:last-child {
+  columns: 167px;
+}
+
+#item_zp {
+  margin-left: 116px;
+}
+
+#items__all {
+  text-align: right;
+  padding-right: 10px;
+}
+
+@media only screen and (min-device-width: 1920px) {
+  .salary__header_category {
+    font-size: .50em;
+  }
+
+  .cards_card__item {
+    font-size: .50em;
+  }
+
+  .salary__all {
+    width: 90%;
+  }
+
+  .salary__all_title_box {
+    width: 518px;
+  }
+
+  #item_zp {
+    margin-left: 236px;
+  }
+
+  .salary__all_item {
+    columns: 168px;
+  }
+}
+
+@media only screen and (min-device-width: 2500px) {
+  .salary__header_category {
+    font-size: .60em;
+  }
+
+  .cards_card__item {
+    font-size: .60em;
+    columns: 119px;
+  }
+
+  .cards_card__item:nth-child(1) {
+    columns: 319px;
+  }
+
+  .cards_card__item:nth-child(16) {
+    position: absolute;
+    right: 0;
+    margin-right: 40px;
+  }
+
+  .cards_card__item:nth-child(16) img {
+    margin-right: -20px;
+  }
+
+  .salary__all_item {
+    font-size: 1.40em;
+    columns: 124px;
+  }
+
+  #item_zp {
+    margin-left: 358px;
+  }
+
+  .salary__all_title_box {
+    width: 674px;
+  }
+
+
+}

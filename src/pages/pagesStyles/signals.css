@@ -1,0 +1,138 @@
+.signals {
+  width: 100%;
+  background: #F3F4F8;
+  min-height: 800px;
+}
+
+.signals__container {
+  padding-top: 15px;
+}
+
+.signals__header {
+  width: 100%;
+  height: 40px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  display: flex;
+  position: relative;
+  padding: 5px 20px;
+  font-size: .80em;
+  color: #2F80ED;
+}
+
+.signals__title {
+  font-weight: 300;
+  user-select: none;
+}
+
+.signals__forgot {
+  font-weight: 300;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+}
+
+.forgot-sum {
+  font-size: .90em;
+}
+
+.signals__type-cards {
+  width: 100%;
+  display: flex;
+  padding-top: 20px;
+}
+
+.signals__type-card {
+  max-width: 595px;
+  width: 70%;
+  margin-right: 20px;
+}
+
+.signals__type-card:last-child {
+  margin-right: 0px;
+}
+
+.signals__type-card_title-box {
+  width: 100%;
+  height: 50px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  background: #fff;
+  display: flex;
+  position: relative;
+  padding: 13px 20px;
+  font-size: .70em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.signals__type-card_title {
+   font-weight: 400;
+}
+
+.signals__type-card_length {
+  position: absolute;
+  margin-top: 3px;
+  right: 0;
+  margin-right: 20px;
+  font-weight: 400;
+}
+
+.signals__card {
+  width: 100%;
+  padding: 5px 15px;
+  height: 200px;
+  background: #FFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.signals__card_header {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #E0E0E0;
+  padding-top: 5px;
+  position: relative;
+  display: flex;
+}
+
+.signals__card_header img {
+  position: absolute;
+  right: 0;
+  margin-right: -5px;
+}
+
+.signals__warning {
+  font-weight: 400;
+  font-size: .80em;
+  color: #EB5757;
+}
+
+.signals__card_content {
+  width: 100%;
+  height: 100px;
+  word-break: break-word;
+  font-size: .75em;
+  padding-top: 10px;
+  font-weight: 300;
+}
+
+@media only screen and (min-device-width: 1920px) {
+  .signals__card {
+    height: 150px;
+  }
+}
+
+@media only screen and (min-device-width: 2500px) {
+  .signals__type-card {
+    max-width: 745px;
+  }
+
+  .signals__card {
+    height: 140px;
+  }
+}
