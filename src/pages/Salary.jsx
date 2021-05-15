@@ -7,6 +7,7 @@ import add from "../img/imports/user.svg";
 import file from "./pagesStyles/img/file.svg";
 import eddit from "./pagesStyles/img/file-icon.svg";
 import del from "./pagesStyles/img/delete.svg";
+import pl from "./pagesStyles/img/arrow_down.svg";
 
 const Funcs = new Functions();
 
@@ -39,8 +40,8 @@ export default function Salary() {
   const [ range, setRange ] = useState([]);
   const [ openCalendar, setOpenCalendar ] = useState(false);
   const [ openWorksSalary, setOpenWorksSalary ] = useState(false);
-  const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(true);
-
+  const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(false);
+  const [ edditWorker, setEdditWorker ] = useState(true);
   const [ allStatistics, setAllStatistics ] = useState(
     [
       {
@@ -60,12 +61,11 @@ export default function Salary() {
     ]
   );
 
-
   return (
     <div className="salary">
       <div className="black_salary_bg" style={
         {
-          display: openWorksSalary || openAllWorksSalary ? "block" : "none"
+          display: openWorksSalary || openAllWorksSalary || edditWorker ? "block" : "none"
         }
       }>
         <div className="salary__works_calendar" id="works_calendar"
@@ -99,7 +99,174 @@ export default function Salary() {
             <h3 className="title_box__title">Кол-во отработанных часов</h3>
             <img src={del} />
           </div>
-          <div className="all_works_calendar__dates"></div>
+          <div className="all_works_calendar__wrap">
+            <div className="all_works_calendar__dates">
+              <div className="dates__coworkers">Сотрудники</div>
+            </div>
+            <div className="dates__days_numbers">
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">1</span>
+                <span className="numbers__number_item">Пн</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">2</span>
+                <span className="numbers__number_item">Вт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">3</span>
+                <span className="numbers__number_item">Ср</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">4</span>
+                <span className="numbers__number_item">Чт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">5</span>
+                <span className="numbers__number_item">Пт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">6</span>
+                <span className="numbers__number_item">Сб</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">7</span>
+                <span className="numbers__number_item">Вс</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">8</span>
+                <span className="numbers__number_item">Пн</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">9</span>
+                <span className="numbers__number_item">Вт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">10</span>
+                <span className="numbers__number_item">Ср</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">11</span>
+                <span className="numbers__number_item">Чт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">12</span>
+                <span className="numbers__number_item">Пт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">13</span>
+                <span className="numbers__number_item">Сб</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">14</span>
+                <span className="numbers__number_item">Пн</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">15</span>
+                <span className="numbers__number_item">Вт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">16</span>
+                <span className="numbers__number_item">Ср</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">17</span>
+                <span className="numbers__number_item">Чт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">18</span>
+                <span className="numbers__number_item">Пт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">19</span>
+                <span className="numbers__number_item">Сб</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">20</span>
+                <span className="numbers__number_item">Пн</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">21</span>
+                <span className="numbers__number_item">Вт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">22</span>
+                <span className="numbers__number_item">Ср</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">23</span>
+                <span className="numbers__number_item">Чт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">24</span>
+                <span className="numbers__number_item">Пт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">26</span>
+                <span className="numbers__number_item">Сб</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">27</span>
+                <span className="numbers__number_item">Пн</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">28</span>
+                <span className="numbers__number_item">Вт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">29</span>
+                <span className="numbers__number_item">Ср</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">30</span>
+                <span className="numbers__number_item">Чт</span>
+              </div>
+              <div className="days_numbers__number">
+                <span className="numbers__number_item">31</span>
+                <span className="numbers__number_item">Пт</span>
+              </div>
+            </div>
+            <div className="dates__all_counter">Итого</div>
+          </div>
+        </div>
+        <div className="salary__eddit_worker"
+          style={{style: edditWorker ? "block" : "none"}}
+        >
+          <div className="eddit_worker__title_box">
+            <h3 className="eddit_worker__title">Иванов Иван Иванович</h3>
+            <h3 className="retired delete" id="title_box__del">Удалить</h3>
+          </div>
+          <div className="eddit_worker__rec">
+            <div className="rec__cards">
+              <div className="rec__card">
+                <h3 className="retired delete rec__card_delete">Удалить</h3>
+                <div className="rec__card_box">
+                  <label className="card__label">Дата</label>
+                  <input className="card__input" type="text" id="date" maxlength="10" />
+                </div>
+                <div className="rec__card_box">
+                  <label className="card__label label_type">Вид начисления</label>
+                  <div className="card__type_select" onMouseOver={e => Funcs.changeStateDomElement(document.querySelector(".type_select__types"))}>
+                    <h3 className="type_select__inner">Штраф</h3>
+                    <img src={pl} /></div>
+                    <div className="type_select__types"
+                      onMouseLeave={e => Funcs.changeStateDomElement("", document.querySelector(".type_select__types"))}
+                      onClick={e => {
+                        if (e.target.className == "types_select__type") {
+                          Funcs.innerText(".type_select__inner", e.target.innerText)
+                        };
+                      }}
+                    >
+                      <div className="types_select__type">Штраф</div>
+                      <div className="types_select__type">Доплата</div>
+                    </div>
+                </div>
+                <div className="rec__card_box">
+                  <label className="card__label">Сумма</label>
+                  <input className="card__input" type="text" id="sum" maxlength="30" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="container salary__container">
