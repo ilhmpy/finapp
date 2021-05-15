@@ -35,11 +35,11 @@ export default function Salary() {
       },
     ]
   );
-  const [ defaultSalary, setDefaultSalary ] = useState([]);
+
   const [ range, setRange ] = useState([]);
   const [ openCalendar, setOpenCalendar ] = useState(false);
-  const [ openWorksSalary, setOpenWorksSalary ] = useState([]);
-  const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState([]);
+  const [ openWorksSalary, setOpenWorksSalary ] = useState(false);
+  const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(true);
 
   const [ allStatistics, setAllStatistics ] = useState(
     [
@@ -63,14 +63,21 @@ export default function Salary() {
 
   return (
     <div className="salary">
-      <div className="black_salary_bg">
-        <div className="salary__works_calendar" id="works_calendar">
+      <div className="black_salary_bg" style={
+        {
+          display: openWorksSalary || openAllWorksSalary ? "block" : "none"
+        }
+      }>
+        <div className="salary__works_calendar" id="works_calendar"
+          style={
+            {
+              display: openWorksSalary ? "block" : "none"
+            }
+          }
+        >
           <div className="works_calendar__title_box">
             <h3 className="works_calendar__title">Иванов Иван Иванович</h3>
-            <img src={del} alt="delete" onClick={e => {
-                Funcs.changeStateDomElement("", document.querySelector(".black_salary_bg"));
-                Funcs.changeStateDomElement("", document.querySelector("#works_calendar"));
-            }} />
+            <img src={del} alt="delete" onClick={e => setOpenWorksSalary(false)} />
           </div>
           <div className="works_calendar__calendar_box">
             <div className="works_calendar__calendar_card">
@@ -87,7 +94,13 @@ export default function Salary() {
           </div>
           <button className="works_calendar__btn">Сохранить</button>
         </div>
-
+        <div className="salary__all_works_calendar" style={{display: openAllWorksSalary ? "block" : "none"}}>
+          <div className="all_works_calendar__title_box">
+            <h3 className="title_box__title">Кол-во отработанных часов</h3>
+            <img src={del} />
+          </div>
+          <div className="all_works_calendar__dates"></div>
+        </div>
       </div>
       <div className="container salary__container">
         <div className="salary__header">
@@ -147,8 +160,7 @@ export default function Salary() {
                   <div className="cards_card__item">{sl.ud}</div>
                   <div className="cards_card__item">
                       {sl.all} <img src={eddit} onClick={e => {
-                        Funcs.changeStateDomElement(document.querySelector("#works_calendar"));
-                        Funcs.changeStateDomElement(document.querySelector(".black_salary_bg"));
+                        setOpenWorksSalary(true);
                         Funcs.scrollTo();
                       }} />
                   </div>
