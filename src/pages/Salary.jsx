@@ -14,15 +14,15 @@ export default function Salary() {
   const [ salary, setSalary ] = useState(
     [
       {
-        coworker: "Иванов Иван Плынк", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
+        coworker: "Иванов Иван Иван", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
         prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
       },
       {
-        coworker: "Иванов Иван Лалыга", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
+        coworker: "Иванов Иван М", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
         prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
       },
       {
-        coworker: "Иванов Иван Равлык", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
+        coworker: "Иванов Иван Рав", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
         prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
       },
       {
@@ -30,7 +30,7 @@ export default function Salary() {
         prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
       },
       {
-        coworker: "Иванов Иван Бляха", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
+        coworker: "Иванов Иван Лан", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
         prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
       },
     ]
@@ -87,7 +87,7 @@ export default function Salary() {
           </div>
           <button className="works_calendar__btn">Сохранить</button>
         </div>
-        
+
       </div>
       <div className="container salary__container">
         <div className="salary__header">

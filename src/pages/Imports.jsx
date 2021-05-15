@@ -32,11 +32,11 @@ export default function Imports() {
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "СобакиКрутые", productionType: "Продукты",
+      {companyName: "Магазин", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Магазин Ролтонов", productionType: "Хозтовары",
+      {companyName: "Магазин2", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
@@ -44,7 +44,7 @@ export default function Imports() {
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "ТуалетныеУнитазы228", productionType: "Хозтовары",
+      {companyName: "Аптека", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
@@ -52,19 +52,19 @@ export default function Imports() {
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Спецслужба детдом", productionType: "Продукты",
+      {companyName: "24/7", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Аренда навоза", productionType: "Хозтовары",
+      {companyName: "Аренда", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "АктивируемУголь", productionType: "Продукты",
+      {companyName: "Магазин4", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "ВывозимГовно inc", productionType: "Продукты",
+      {companyName: "Турагенство", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
@@ -72,31 +72,31 @@ export default function Imports() {
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "SOBAKI.free", productionType: "Хозтовары",
+      {companyName: "Pet's Home", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Falling", productionType: "Продукты",
+      {companyName: "Test", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Downing", productionType: "Продукты",
+      {companyName: "Tset3", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Loosers", productionType: "Хозтовары",
+      {companyName: "Loo", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Amungus inc", productionType: "Хозтовары",
+      {companyName: "Yohoof", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "AmongUsStupidPeoples", productionType: "Хозтовары",
+      {companyName: "Yahoo!", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "AmongUsVanki", productionType: "Хозтовары",
+      {companyName: "MMM", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
@@ -104,23 +104,23 @@ export default function Imports() {
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "free.Dogs228", productionType: "Продукты",
+      {companyName: "YYy", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "mmm07.05.2021-SHIT", productionType: "Хозтовары",
+      {companyName: "lll", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Dadadadad", productionType: "Продукты",
+      {companyName: "Und", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Nike Company", productionType: "Хозтовары",
+      {companyName: "Nike", productionType: "Хозтовары",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "Sasung Company", productionType: "Продукты",
+      {companyName: "Company", productionType: "Продукты",
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
@@ -128,9 +128,6 @@ export default function Imports() {
       commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации.",
       inn: "", bic: "", bank: "", res: "", cores: ""
       },
-      {companyName: "karaka", productionType: "Продукты",
-      commentary: "Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа соответствующий условий активизации."},
-
   ]);
 
   const [openAddModal, setOpenAddModal] = useState(false);
