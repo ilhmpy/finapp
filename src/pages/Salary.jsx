@@ -6,6 +6,7 @@ import "./pagesStyles/salary.css";
 import add from "../img/imports/user.svg";
 import file from "./pagesStyles/img/file.svg";
 import eddit from "./pagesStyles/img/file-icon.svg";
+import del from "./pagesStyles/img/delete.svg";
 
 const Funcs = new Functions();
 
@@ -32,10 +33,6 @@ export default function Salary() {
         coworker: "Иванов Иван Бляха", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
         prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
       },
-      {
-        coworker: "Иванов Иван Крыл", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
-      }
     ]
   );
   const [ defaultSalary, setDefaultSalary ] = useState([]);
@@ -47,18 +44,18 @@ export default function Salary() {
   const [ allStatistics, setAllStatistics ] = useState(
     [
       {
-         HOURS: 0,
-         PROCENTS: 0,
-         BNS: 0,
-         PREPAIDS: 0,
-         SALARYS: 0,
-         MEDS: 0,
-         OTHERS: 0,
-         WARS: 0,
-         FORMS: 0,
-         UDS: 0,
-         FINES: 0,
-         ALLS: 0
+         HOURS: null,
+         PROCENTS: null,
+         BNS: null,
+         PREPAIDS: null,
+         SALARYS: null,
+         MEDS: null,
+         OTHERS: null,
+         WARS: null,
+         FORMS: null,
+         UDS: null,
+         FINES: null,
+         ALLS: null
       }
     ]
   );
@@ -66,6 +63,32 @@ export default function Salary() {
 
   return (
     <div className="salary">
+      <div className="black_salary_bg">
+        <div className="salary__works_calendar" id="works_calendar">
+          <div className="works_calendar__title_box">
+            <h3 className="works_calendar__title">Иванов Иван Иванович</h3>
+            <img src={del} alt="delete" onClick={e => {
+                Funcs.changeStateDomElement("", document.querySelector(".black_salary_bg"));
+                Funcs.changeStateDomElement("", document.querySelector("#works_calendar"));
+            }} />
+          </div>
+          <div className="works_calendar__calendar_box">
+            <div className="works_calendar__calendar_card">
+              <div className="calendar_card__date">
+                <span className="card__date_item">1</span>
+                <span className="card__date_item">Пт</span>
+              </div>
+              <input className="calendar_card__input dates_inputs" type="text" placeholder="-" />
+            </div>
+            <div className="works_calendar__calendar_all">
+              <div className="calendar_all__all_item">Итого</div>
+              <div className="calendar_all__all_item">80</div>
+            </div>
+          </div>
+          <button className="works_calendar__btn">Сохранить</button>
+        </div>
+        
+      </div>
       <div className="container salary__container">
         <div className="salary__header">
           <div className="salary__header_title">
@@ -106,7 +129,7 @@ export default function Salary() {
           {
             salary.map(sl => {
               return (
-                <div className="salary__cards_card">
+                <div className="salary__cards_card" key={salary.length} id={salary.indexOf(sl)}>
                   <div className="cards_card__item">{sl.coworker}</div>
                   <div className="cards_card__item">{sl.position}</div>
                   <div className="cards_card__item">{sl.hours}</div>
@@ -122,7 +145,13 @@ export default function Salary() {
                   <div className="cards_card__item">{sl.form}</div>
                   <div className="cards_card__item">{sl.fine}</div>
                   <div className="cards_card__item">{sl.ud}</div>
-                  <div className="cards_card__item">{sl.all} <img src={eddit} /></div>
+                  <div className="cards_card__item">
+                      {sl.all} <img src={eddit} onClick={e => {
+                        Funcs.changeStateDomElement(document.querySelector("#works_calendar"));
+                        Funcs.changeStateDomElement(document.querySelector(".black_salary_bg"));
+                        Funcs.scrollTo();
+                      }} />
+                  </div>
                 </div>
               )
             })
