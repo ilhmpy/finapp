@@ -16,29 +16,30 @@ export default function Salary() {
   const [ salary, setSalary ] = useState(
     [
       {
-        coworker: "Иванов Иван Иван", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958",
-        all: "40 652", accruals: [], commentary: ""
+        coworker: "Иванов Иван Иван", position: "Админ", hours: "0", rate: "145", procent: "15", surchange: "0", salary: "41600",
+        prepaid: "0", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
+        all: "40652", accruals: [], commentary: ""
       },
       {
-        coworker: "Иванов Иван М", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958",
-        all: "40 652", accruals: [], commentary: ""
+        coworker: "Иванов Иван М", position: "Админ", hours: "0", rate: "0", procent: "0", surchange: "0", salary: "41600",
+        prepaid: "11000", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
+        all: "40652", accruals: [], commentary: ""
       },
       {
-        coworker: "Иванов Иван Рав", position: "Админ", hours: "178", rate: "145", procent: "15",
-        surchange: "1000", salary: "41 600", prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13",
-        form: "228", fine: "20", ud: "958", all: "40 652", accruals: [], commentary: ""
+        coworker: "Иванов Иван Рав", position: "Админ", hours: "0", rate: "0", procent: "0",
+        surchange: "0", salary: "41600", prepaid: "11000", bn: "0", med: "0", other: "0", war: "0",
+        form: "0", fine: "20", ud: "0", all: "40652", accruals: [], commentary: ""
       },
       {
-        coworker: "Иванов Иван Красный", position: "Админ", hours: "178", rate: "145", procent: "15",
-        surchange: "1000", salary: "41 600", accruals: [], commentary: "", prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958",
-        all: "2000"
+        coworker: "Иванов Иван Красный", position: "Админ", hours: "0", rate: "0", procent: "15",
+        surchange: "0", salary: "41600", accruals: [], commentary: "", prepaid: "4200", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0",
+        ud: "0",
+        all: "0", accruals: [], commentary: ""
       },
       {
-        coworker: "Иванов Иван Лан", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958",
-        all: "40 652", accruals: [], commentary: ""
+        coworker: "Иванов Иван Лан", position: "Админ", hours: "0", rate: "0", procent: "15", surchange: "0", salary: "41600",
+        prepaid: "0", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
+        all: "0", accruals: [], commentary: ""
       },
     ]
   );
@@ -48,6 +49,7 @@ export default function Salary() {
   const [ openWorksSalary, setOpenWorksSalary ] = useState(false);
   const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(false);
   const [ edditWorker, setEdditWorker ] = useState(false);
+  const [ addCoworker, setAddCoworker ] = useState(true);
   const [ allStatistics, setAllStatistics ] = useState (
     [
       {
@@ -74,7 +76,7 @@ export default function Salary() {
     <div className="salary">
       <div className="black_salary_bg" style={
         {
-          display: openWorksSalary || openAllWorksSalary || edditWorker ? "block" : "none"
+          display: openWorksSalary || openAllWorksSalary || edditWorker || addCoworker ? "block" : "none"
         }
       }>
         <div className="salary__works_calendar" id="works_calendar"
@@ -242,7 +244,13 @@ export default function Salary() {
         >
           <div className="eddit_worker__title_box">
             <h3 className="eddit_worker__title">Иванов Иван Иванович</h3>
-            <h3 className="retired delete" id="title_box__del">Удалить</h3>
+            <h3 className="retired delete" id="title_box__del"
+              onClick={e => {
+                setSalary(sal => sal.filter(s => sal.indexOf(s) != e.target.parentNode.parentNode.id));
+                setSalary(sl => sl.map(s => s));
+                setEdditWorker(false);
+              }}
+            >Удалить</h3>
           </div>
           <div className="eddit_worker__rec">
             <div className="rec__cards">
@@ -250,7 +258,26 @@ export default function Salary() {
                 newAccruals.map(cr => {
                   return (
                     <div className="rec__card" key={newAccruals.indexOf(cr)} id={newAccruals.indexOf(cr)}>
-                      <h3 className="retired delete rec__card_delete">Удалить</h3>
+                      <h3 className="retired delete rec__card_delete"
+                        onClick={e => {
+                          let accrual = newAccruals[e.target.parentNode.id];
+                          if (accrual.violation == "Штраф" & Funcs.checkerLength(accrual.violation)) {
+                            salary[salary.indexOf(currentEddit)].fine = Number(salary[salary.indexOf(currentEddit)].fine) - Number(e.target.parentNode.querySelector(".sum").value);
+                            if (Number(salary[salary.indexOf(currentEddit)].fine) < 0) {
+                              salary[salary.indexOf(currentEddit)].fine = 0;
+                            };
+                          } else if (accrual.violation == "Доплата") {
+                            salary[salary.indexOf(currentEddit)].surchange = Number(salary[salary.indexOf(currentEddit)].surchange) - Number(e.target.parentNode.querySelector(".sum").value)
+                            if (Number(salary[salary.indexOf(currentEddit)].surchange) < 0) {
+                              salary[salary.indexOf(currentEddit)].surchange = 0;
+                            };
+                          };
+                          setNewAccruals(s => s.filter(t => s.indexOf(t) != newAccruals.indexOf(accrual)));
+                          setSalary(sal => sal.map(sl => sl));
+                          setNewAccruals(d => d.map(s => s));
+
+                        }}
+                      >Удалить</h3>
                       <div className="rec__card_box">
                         <label className="card__label">Дата</label>
                         <input className="card__input" defaultValue={cr.date} type="text" maxLength="10" onKeyUp={e => {
@@ -286,7 +313,7 @@ export default function Salary() {
                       </div>
                       <div className="rec__card_box">
                         <label className="card__label">Сумма</label>
-                        <input className="card__input" defaultValue={cr.sum} name="sum" type="text" maxLength="30" onKeyUp={e => {
+                        <input className="card__input sum" defaultValue={cr.sum} name="sum" type="text" maxLength="30" onKeyUp={e => {
                           newAccruals[e.target.parentNode.parentNode.id].sum = e.target.value;
                         }} />
                       </div>
@@ -298,7 +325,7 @@ export default function Salary() {
           </div>
           <h3 className="rec__add"
             onClick={e => {
-              setNewAccruals(acr => [...acr, { date: "", violation: "", sum: ""}]);
+              setNewAccruals(acr => [...acr, { date: Funcs.getDate(), violation: "Штраф", sum: 0}]);
               setNewAccruals(acr => acr.map(c => c));
             }}
           >Добавить начисление</h3>
@@ -311,10 +338,48 @@ export default function Salary() {
             <button className="rec__btn" onClick={e => setEdditWorker(false)}>Закрыть</button>
             <button className="rec__btn"
               onClick={e => {
+                let fine = 0;
+                let surchange = 0;
+
+                newAccruals.forEach(acr => {
+                  if (acr.violation == "Штраф") fine += Number(acr.sum);
+                  else surchange += Number(acr.sum);
+                });
+
+                salary.forEach(sl => {
+                  if (salary.indexOf(sl) == salary.indexOf(currentEddit)) {
+                    let slItem = salary[salary.indexOf(sl)];
+                    let all = Number(slItem.salary) - fine + surchange + Number(slItem.bn) + Number(slItem.war);
+                    salary[salary.indexOf(sl)] = {
+                      coworker: slItem.coworker, position: slItem.position,
+                      hours: slItem.hours, rate: slItem.rate, procent: slItem.procent,
+                      surchange: surchange,
+                      salary: slItem.salary, prepaid: slItem.prepaid,
+                      bn: slItem.bn, med: slItem.med, other: slItem.other,
+                      war: slItem.war, form: slItem.form,
+                      fine: fine,
+                      ud: slItem.ud,
+                      all: all < 0 ? 0 : all,
+                      accruals: newAccruals,
+                      commentary:  document.querySelector(".rec__commentary").value
+                    };
+                  };
+                });
+
+                setSalary(sl => sl.map(s => s));
                 setEdditWorker(false);
               }}
             >Сохранить</button>
           </div>
+        </div>
+        <div className="salary__add_coworker"
+          style={
+            {
+              display: addCoworker ? "block" : "none"
+            }
+          }
+        >
+          <div className="add_coworker__title_box"></div>
         </div>
       </div>
       <div className="container salary__container">
@@ -371,8 +436,8 @@ export default function Salary() {
                   <div className="cards_card__item">{sl.other}</div>
                   <div className="cards_card__item">{sl.war}</div>
                   <div className="cards_card__item">{sl.form}</div>
-                  <div className="cards_card__item">{sl.fine}</div>
                   <div className="cards_card__item">{sl.ud}</div>
+                  <div className="cards_card__item">{sl.fine}</div>
                   <div className="cards_card__item">
                       {sl.all} <img src={eddit} onClick={e => {
                         salary.forEach(ls => {
@@ -381,6 +446,7 @@ export default function Salary() {
                             setNewAccruals(ls.accruals);
                             Funcs.innerText(".eddit_worker__title", ls.coworker);
                             Funcs.innerText(".rec__commentary", ls.commentary, "v");
+                            document.querySelector(".salary__eddit_worker").id = salary.indexOf(ls);
                             setEdditWorker(true);
                           };
                         });

@@ -202,6 +202,9 @@
 
 .salary__all_item:last-child {
   columns: 167px;
+  color: #3F40F0;
+  font-size: 1em;
+  text-decoration: underline;
 }
 
 #item_zp {
@@ -697,6 +700,13 @@
   color: #3F40F0;
 }
 
+.salary__add_coworker {
+
+}
+
+.add_coworker__title_box {
+  
+}
 
 
 @media only screen and (min-device-width: 1920px) {
