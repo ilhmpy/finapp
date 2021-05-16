@@ -18,28 +18,28 @@ export default function Salary() {
       {
         coworker: "Иванов Иван Иван", position: "Админ", hours: "0", rate: "145", procent: "15", surchange: "0", salary: "41600",
         prepaid: "0", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
-        all: "40652", accruals: [], commentary: ""
+        all: "40652", accruals: [], daysOnDuty: [], commentary: ""
       },
       {
         coworker: "Иванов Иван М", position: "Админ", hours: "0", rate: "0", procent: "0", surchange: "0", salary: "41600",
         prepaid: "11000", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
-        all: "40652", accruals: [], commentary: ""
+        all: "40652", accruals: [], daysOnDuty: [], commentary: ""
       },
       {
         coworker: "Иванов Иван Рав", position: "Админ", hours: "0", rate: "0", procent: "0",
         surchange: "0", salary: "41600", prepaid: "11000", bn: "0", med: "0", other: "0", war: "0",
-        form: "0", fine: "20", ud: "0", all: "40652", accruals: [], commentary: ""
+        form: "0", fine: "20", ud: "0", all: "40652", accruals: [], daysOnDuty: [], commentary: ""
       },
       {
         coworker: "Иванов Иван Красный", position: "Админ", hours: "0", rate: "0", procent: "15",
-        surchange: "0", salary: "41600", accruals: [], commentary: "", prepaid: "4200", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0",
+        surchange: "0", salary: "41600", accruals: [], commentary: "", daysOnDuty: [], prepaid: "4200", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0",
         ud: "0",
         all: "0", accruals: [], commentary: ""
       },
       {
         coworker: "Иванов Иван Лан", position: "Админ", hours: "0", rate: "0", procent: "15", surchange: "0", salary: "41600",
         prepaid: "0", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
-        all: "0", accruals: [], commentary: ""
+        all: "0", accruals: [], commentary: "", daysOnDuty: []
       },
     ]
   );
@@ -49,7 +49,7 @@ export default function Salary() {
   const [ openWorksSalary, setOpenWorksSalary ] = useState(false);
   const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(false);
   const [ edditWorker, setEdditWorker ] = useState(false);
-  const [ addCoworker, setAddCoworker ] = useState(true);
+  const [ addCoworker, setAddCoworker ] = useState(false);
   const [ allStatistics, setAllStatistics ] = useState (
     [
       {
@@ -71,6 +71,9 @@ export default function Salary() {
 
   const [ currentEddit, setCurrentEddit ] = useState([]);
   const [ newAccruals, setNewAccruals ] = useState([]);
+  const [ month, setMonth ] = useState([]);
+
+  useEffect(() => Funcs.getCurrentMonth(setMonth), []);
 
   return (
     <div className="salary">
@@ -79,32 +82,6 @@ export default function Salary() {
           display: openWorksSalary || openAllWorksSalary || edditWorker || addCoworker ? "block" : "none"
         }
       }>
-        <div className="salary__works_calendar" id="works_calendar"
-          style={
-            {
-              display: openWorksSalary ? "block" : "none"
-            }
-          }
-        >
-          <div className="works_calendar__title_box">
-            <h3 className="works_calendar__title">Иванов Иван Иванович</h3>
-            <img src={del} alt="delete" onClick={e => setOpenWorksSalary(false)} />
-          </div>
-          <div className="works_calendar__calendar_box">
-            <div className="works_calendar__calendar_card">
-              <div className="calendar_card__date">
-                <span className="card__date_item">1</span>
-                <span className="card__date_item">Пт</span>
-              </div>
-              <input className="calendar_card__input dates_inputs" type="text" placeholder="-" />
-            </div>
-            <div className="works_calendar__calendar_all">
-              <div className="calendar_all__all_item">Итого</div>
-              <div className="calendar_all__all_item">80</div>
-            </div>
-          </div>
-          <button className="works_calendar__btn">Сохранить</button>
-        </div>
         <div className="salary__all_works_calendar" style={{display: openAllWorksSalary ? "block" : "none"}}>
           <div className="all_works_calendar__title_box">
             <h3 className="title_box__title">Кол-во отработанных часов</h3>
@@ -115,132 +92,22 @@ export default function Salary() {
               <div className="dates__coworkers">Сотрудники</div>
             </div>
             <div className="dates__days_numbers">
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">1</span>
-                <span className="numbers__number_item">Пн</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">2</span>
-                <span className="numbers__number_item">Вт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">3</span>
-                <span className="numbers__number_item">Ср</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">4</span>
-                <span className="numbers__number_item">Чт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">5</span>
-                <span className="numbers__number_item">Пт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">6</span>
-                <span className="numbers__number_item">Сб</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">7</span>
-                <span className="numbers__number_item">Вс</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">8</span>
-                <span className="numbers__number_item">Пн</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">9</span>
-                <span className="numbers__number_item">Вт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">10</span>
-                <span className="numbers__number_item">Ср</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">11</span>
-                <span className="numbers__number_item">Чт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">12</span>
-                <span className="numbers__number_item">Пт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">13</span>
-                <span className="numbers__number_item">Сб</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">14</span>
-                <span className="numbers__number_item">Пн</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">15</span>
-                <span className="numbers__number_item">Вт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">16</span>
-                <span className="numbers__number_item">Ср</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">17</span>
-                <span className="numbers__number_item">Чт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">18</span>
-                <span className="numbers__number_item">Пт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">19</span>
-                <span className="numbers__number_item">Сб</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">20</span>
-                <span className="numbers__number_item">Пн</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">21</span>
-                <span className="numbers__number_item">Вт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">22</span>
-                <span className="numbers__number_item">Ср</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">23</span>
-                <span className="numbers__number_item">Чт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">24</span>
-                <span className="numbers__number_item">Пт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">26</span>
-                <span className="numbers__number_item">Сб</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">27</span>
-                <span className="numbers__number_item">Пн</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">28</span>
-                <span className="numbers__number_item">Вт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">29</span>
-                <span className="numbers__number_item">Ср</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">30</span>
-                <span className="numbers__number_item">Чт</span>
-              </div>
-              <div className="days_numbers__number">
-                <span className="numbers__number_item">31</span>
-                <span className="numbers__number_item">Пт</span>
-              </div>
+              {
+                month.map(day => {
+                  return (
+                    <div className="days_numbers__number">
+                      <span className="numbers__number_item">{day.day}</span>
+                      <span className="numbers__number_item">{day.weekDay}</span>
+                    </div>
+                  )
+                })
+              }
             </div>
             <div className="dates__all_counter">Итого</div>
           </div>
         </div>
         <div className="salary__eddit_worker"
-          style={{style: edditWorker ? "block" : "none"}}
+          style={{display: edditWorker ? "block" : "none"}}
         >
           <div className="eddit_worker__title_box">
             <h3 className="eddit_worker__title">Иванов Иван Иванович</h3>
@@ -261,17 +128,6 @@ export default function Salary() {
                       <h3 className="retired delete rec__card_delete"
                         onClick={e => {
                           let accrual = newAccruals[e.target.parentNode.id];
-                          if (accrual.violation == "Штраф" & Funcs.checkerLength(accrual.violation)) {
-                            salary[salary.indexOf(currentEddit)].fine = Number(salary[salary.indexOf(currentEddit)].fine) - Number(e.target.parentNode.querySelector(".sum").value);
-                            if (Number(salary[salary.indexOf(currentEddit)].fine) < 0) {
-                              salary[salary.indexOf(currentEddit)].fine = 0;
-                            };
-                          } else if (accrual.violation == "Доплата") {
-                            salary[salary.indexOf(currentEddit)].surchange = Number(salary[salary.indexOf(currentEddit)].surchange) - Number(e.target.parentNode.querySelector(".sum").value)
-                            if (Number(salary[salary.indexOf(currentEddit)].surchange) < 0) {
-                              salary[salary.indexOf(currentEddit)].surchange = 0;
-                            };
-                          };
                           setNewAccruals(s => s.filter(t => s.indexOf(t) != newAccruals.indexOf(accrual)));
                           setSalary(sal => sal.map(sl => sl));
                           setNewAccruals(d => d.map(s => s));
@@ -379,7 +235,31 @@ export default function Salary() {
             }
           }
         >
-          <div className="add_coworker__title_box"></div>
+          <header className="add_coworker__header">
+              <div className="add_coworker__title_box">
+                <h3 className="ad_coworker__title">Добавление сотрудников</h3>
+                <img src={del} onClick={e => setAddCoworker(false)} />
+              </div>
+              <div className="add_coworker__search">
+                <h3 className="add_coworker__search_title">Сотрудник</h3>
+                <i class="fas fa-search"></i>
+                <input className="add_coworker__search_input" type="text" placeholder="Введите фамилию сотрудника" onChange={e => {
+                  if (e.keyCode === 8) {
+
+                  } else {
+
+                  }
+                }} />
+              </div>
+          </header>
+          <div className="add_coworker__accs">
+            <div className="add_coworker__accs_wrap">
+              <div className="add_coworker__acc_card">
+                <h3 className="add_coworker__acc_name">Иванов Иван Иванович</h3>
+                <h3 className="add_coworker__acc_add">Добавить</h3>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="container salary__container">
@@ -397,7 +277,10 @@ export default function Salary() {
               <button className="header_title__btn activeBtn">13.05.2021</button>
               <button className="header_title__btn">14.05.2021</button>
             </div>
-            <img src={add} alt="add" />
+            <i className="far fa-calendar-alt" id="calendar" onClick={e => setOpenAllWorksSalary(true)}></i>
+            <img src={add} alt="add" onClick={e => {
+              setAddCoworker(true);
+            }} />
           </div>
           <div className="salary__header_categories">
             <div className="salary__header_category">Сотрудник <img src={file} /></div>

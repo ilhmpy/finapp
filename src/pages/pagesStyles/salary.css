@@ -701,13 +701,141 @@
 }
 
 .salary__add_coworker {
+  width: 40%;
+  max-width: 500px;
+  margin: 0 auto;
+  height: 600px;
+  box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
 
+.add_coworker__header {
+  width: 100%;
+  height: 120px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  background: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .add_coworker__title_box {
-  
+  width: 100%;
+  height: 75px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-bottom: 1px solid #E0E0E0;
 }
 
+.add_coworker__title_box > h3 {
+  font-weight: 400;
+  font-size: .80em;
+}
+
+.add_coworker__title_box > img {
+  width: 30px;
+  position: absolute;
+  right: 0;
+  height: 30px;
+}
+
+.add_coworker__search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.add_coworker__search > h3 {
+  font-weight: 400;
+  font-size: .70em;
+  margin-right: 20px;
+}
+
+.add_coworker__search > i {
+  position: absolute;
+  color: #BDBDBD;
+  font-size: .60em;
+  margin-left: 115px;
+}
+
+.add_coworker__search > input {
+  background: #F2F2F2;
+  width: 361px;
+  height: 25px;
+  border-radius: 12.5px;
+  display: flex;
+  padding-left: 35px;
+  align-items: center;
+}
+
+.add_coworker__search_input::placeholder {
+  color: #BDBDBD;
+}
+
+.add_coworker__accs {
+  width: 100%;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  height: 480px;
+  overflow: hidden;
+  background: #F3F4F8;
+}
+
+.add_coworker__accs_wrap {
+  width: 100%;
+  height: 3000px;
+  padding-top: 10px;
+  overflow-y: scroll;
+}
+
+.add_coworker__acc_card {
+  margin-bottom: 15px;
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.add_coworker__acc_name {
+  font-weight: 300;
+  font-size: .70em;
+  line-height: 18px;
+  font-style: normal;
+}
+
+.add_coworker__acc_add {
+  float: right;
+  font-weight: 300;
+  color: #219653;
+  cursor: pointer;
+  margin-right: 11px;
+  font-size: .70em;
+  position: absolute;
+  right: 0;
+}
+
+.add_coworker__acc_add:hover {
+  text-decoration: underline;
+}
+
+#calendar {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  color: #3F40F0;
+  margin-right: 50px;
+  font-size: .80em;
+  margin-top: 8px;
+}
 
 @media only screen and (min-device-width: 1920px) {
   .salary__header_category {

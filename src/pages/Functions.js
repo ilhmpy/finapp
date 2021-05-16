@@ -373,4 +373,33 @@ export default class Functions {
         };
     }));
   };
+
+  getCurrentMonth(set) {
+    const date = new Date();
+    const numberMonth = date.getMonth() + 1;
+    let month = [];
+    let weekDays = [
+      "Вс", "Пн", "Вт",
+      "Ср", "Чт", "Пт",
+      "Сб",
+    ];
+    let days = 31;
+
+    if (numberMonth === 2) days = 28;
+    else if (
+      numberMonth === 1 || numberMonth === 3 || numberMonth === 5 ||
+      numberMonth === 7 || numberMonth === 8 || numberMonth === 10 ||
+      numberMonth === 12
+    ) days = 31;
+    else days = 30;
+
+
+    for (let i = 1; month.length < days; i++) {
+      const weekDate = new Date(date.getFullYear(), date.getMonth(), i);
+      month = [...month, { day: `${i < 10 ? "0" + i : i}`, weekDay: weekDays[weekDate.getDay()]}];
+    };
+
+    set(month);
+    set(m => m.map(d => d));
+  };
 };
