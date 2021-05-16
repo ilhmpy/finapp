@@ -8,6 +8,7 @@ import file from "./pagesStyles/img/file.svg";
 import eddit from "./pagesStyles/img/file-icon.svg";
 import del from "./pagesStyles/img/delete.svg";
 import pl from "./pagesStyles/img/arrow_down.svg";
+import twriter from "./pagesStyles/img/typewriter.svg";
 
 const Funcs = new Functions();
 
@@ -16,23 +17,28 @@ export default function Salary() {
     [
       {
         coworker: "Иванов Иван Иван", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
+        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958",
+        all: "40 652", accruals: [], commentary: ""
       },
       {
         coworker: "Иванов Иван М", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
+        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958",
+        all: "40 652", accruals: [], commentary: ""
       },
       {
-        coworker: "Иванов Иван Рав", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
+        coworker: "Иванов Иван Рав", position: "Админ", hours: "178", rate: "145", procent: "15",
+        surchange: "1000", salary: "41 600", prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13",
+        form: "228", fine: "20", ud: "958", all: "40 652", accruals: [], commentary: ""
       },
       {
-        coworker: "Иванов Иван Красный", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
+        coworker: "Иванов Иван Красный", position: "Админ", hours: "178", rate: "145", procent: "15",
+        surchange: "1000", salary: "41 600", accruals: [], commentary: "", prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958",
+        all: "2000"
       },
       {
         coworker: "Иванов Иван Лан", position: "Админ", hours: "178", rate: "145", procent: "15", surchange: "1000", salary: "41 600",
-        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958", all: "40 652"
+        prepaid: "11 000", bn: "4 368", med: "200", other: "120", war: "13", form: "228", fine: "20", ud: "958",
+        all: "40 652", accruals: [], commentary: ""
       },
     ]
   );
@@ -41,8 +47,8 @@ export default function Salary() {
   const [ openCalendar, setOpenCalendar ] = useState(false);
   const [ openWorksSalary, setOpenWorksSalary ] = useState(false);
   const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(false);
-  const [ edditWorker, setEdditWorker ] = useState(true);
-  const [ allStatistics, setAllStatistics ] = useState(
+  const [ edditWorker, setEdditWorker ] = useState(false);
+  const [ allStatistics, setAllStatistics ] = useState (
     [
       {
          HOURS: null,
@@ -60,6 +66,9 @@ export default function Salary() {
       }
     ]
   );
+
+  const [ currentEddit, setCurrentEddit ] = useState([]);
+  const [ newAccruals, setNewAccruals ] = useState([]);
 
   return (
     <div className="salary">
@@ -237,35 +246,74 @@ export default function Salary() {
           </div>
           <div className="eddit_worker__rec">
             <div className="rec__cards">
-              <div className="rec__card">
-                <h3 className="retired delete rec__card_delete">Удалить</h3>
-                <div className="rec__card_box">
-                  <label className="card__label">Дата</label>
-                  <input className="card__input" type="text" id="date" maxlength="10" />
-                </div>
-                <div className="rec__card_box">
-                  <label className="card__label label_type">Вид начисления</label>
-                  <div className="card__type_select" onMouseOver={e => Funcs.changeStateDomElement(document.querySelector(".type_select__types"))}>
-                    <h3 className="type_select__inner">Штраф</h3>
-                    <img src={pl} /></div>
-                    <div className="type_select__types"
-                      onMouseLeave={e => Funcs.changeStateDomElement("", document.querySelector(".type_select__types"))}
-                      onClick={e => {
-                        if (e.target.className == "types_select__type") {
-                          Funcs.innerText(".type_select__inner", e.target.innerText)
-                        };
-                      }}
-                    >
-                      <div className="types_select__type">Штраф</div>
-                      <div className="types_select__type">Доплата</div>
+              {
+                newAccruals.map(cr => {
+                  return (
+                    <div className="rec__card" key={newAccruals.indexOf(cr)} id={newAccruals.indexOf(cr)}>
+                      <h3 className="retired delete rec__card_delete">Удалить</h3>
+                      <div className="rec__card_box">
+                        <label className="card__label">Дата</label>
+                        <input className="card__input" defaultValue={cr.date} type="text" maxLength="10" onKeyUp={e => {
+                          newAccruals[e.target.parentNode.parentNode.id].date = e.target.value;
+                        }} />
+                      </div>
+                      <div className="rec__card_box">
+                        <label className="card__label label_type">Вид начисления</label>
+                        <div className="card__type_select" onMouseOver={e => {
+                          document.querySelectorAll(".type_select__types").forEach(d => Funcs.changeStateDomElement("", d));
+                          if (e.target.className == "card__type_select") {
+                            Funcs.changeStateDomElement(e.target.parentNode.querySelector(".type_select__types"));
+                          };
+                        }}>
+                          <h3 className="type_select__inner">Штраф</h3>
+                          <img src={pl} /></div>
+                          <div className="type_select__types"
+                            onMouseLeave={e => {
+                              if (e.target.className == "type_select__types") {
+                                e.target.style.display = "none"
+                              } else e.target.parentNode.style.display = "none";
+                            }}
+                            onClick={e => {
+                              if (e.target.className == "types_select__type") {
+                                e.target.parentNode.parentNode.querySelector(".type_select__inner").innerText = e.target.innerText;
+                                newAccruals[e.target.parentNode.parentNode.parentNode.id].violation = e.target.innerText;
+                              }
+                            }}
+                          >
+                            <div className="types_select__type">Штраф</div>
+                            <div className="types_select__type">Доплата</div>
+                          </div>
+                      </div>
+                      <div className="rec__card_box">
+                        <label className="card__label">Сумма</label>
+                        <input className="card__input" defaultValue={cr.sum} name="sum" type="text" maxLength="30" onKeyUp={e => {
+                          newAccruals[e.target.parentNode.parentNode.id].sum = e.target.value;
+                        }} />
+                      </div>
                     </div>
-                </div>
-                <div className="rec__card_box">
-                  <label className="card__label">Сумма</label>
-                  <input className="card__input" type="text" id="sum" maxlength="30" />
-                </div>
-              </div>
+                  )
+                })
+              }
             </div>
+          </div>
+          <h3 className="rec__add"
+            onClick={e => {
+              setNewAccruals(acr => [...acr, { date: "", violation: "", sum: ""}]);
+              setNewAccruals(acr => acr.map(c => c));
+            }}
+          >Добавить начисление</h3>
+          <label className="card__label comment__label">Комментарий</label>
+          <textarea className="rec__commentary" type="text" maxlength="1000"></textarea>
+          <span style={{display: "flex"}}>
+            <img src={twriter} id="tw" /><h3 className="rec__add">Распечатать зарплатный лист</h3>
+          </span>
+          <div className="rec__btns">
+            <button className="rec__btn" onClick={e => setEdditWorker(false)}>Закрыть</button>
+            <button className="rec__btn"
+              onClick={e => {
+                setEdditWorker(false);
+              }}
+            >Сохранить</button>
           </div>
         </div>
       </div>
@@ -309,8 +357,8 @@ export default function Salary() {
           {
             salary.map(sl => {
               return (
-                <div className="salary__cards_card" key={salary.length} id={salary.indexOf(sl)}>
-                  <div className="cards_card__item">{sl.coworker}</div>
+                <div className="salary__cards_card" key={salary.indexOf(sl)} id={salary.indexOf(sl)}>
+                  <div className="cards_card__item card__item_name">{sl.coworker}</div>
                   <div className="cards_card__item">{sl.position}</div>
                   <div className="cards_card__item">{sl.hours}</div>
                   <div className="cards_card__item">{sl.rate}</div>
@@ -327,7 +375,15 @@ export default function Salary() {
                   <div className="cards_card__item">{sl.ud}</div>
                   <div className="cards_card__item">
                       {sl.all} <img src={eddit} onClick={e => {
-                        setOpenWorksSalary(true);
+                        salary.forEach(ls => {
+                          if (ls.coworker == e.target.parentNode.parentNode.querySelector(".card__item_name").innerText) {
+                            setCurrentEddit(ls);
+                            setNewAccruals(ls.accruals);
+                            Funcs.innerText(".eddit_worker__title", ls.coworker);
+                            Funcs.innerText(".rec__commentary", ls.commentary, "v");
+                            setEdditWorker(true);
+                          };
+                        });
                         Funcs.scrollTo();
                       }} />
                   </div>

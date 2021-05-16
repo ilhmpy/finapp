@@ -21,9 +21,9 @@ let newCompany;
 let edditCompany;
 
 export default function Settings() {
-  const [token, setToken] = React.useState("");
-  const [rows, setRows] = React.useState([]);
-  const [accounts, setAccounts]  = React.useState([
+  const [ token, setToken ] = React.useState("");
+  const [ rows, setRows ] = React.useState([]);
+  const [ accounts, setAccounts ]  = React.useState([
     { name: "Иванов Сергей Иванович", number: "+7 (123) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
     { name: "Иванов Иван Иванович", number: "+7 (942) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
     { name: "Иванов Александр Иванович", number: "+7 (918) 047-55-66", email: "usermail@mail.ru", active: false, companies: []},
@@ -31,7 +31,7 @@ export default function Settings() {
     { name: "Иванов Сергей Иванович", number: "+7 (971) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
   ]);
 
-  const [defaultAccounts, setDefaultAccounts] = React.useState([
+  const [ defaultAccounts, setDefaultAccounts ] = React.useState([
     { name: "Иванов Сергей Иванович", number: "+7 (123) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
     { name: "Иванов Иван Иванович", number: "+7 (942) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
     { name: "Иванов Александр Иванович", number: "+7 (918) 047-55-66", email: "usermail@mail.ru", active: false, companies: []},
@@ -48,7 +48,7 @@ export default function Settings() {
     { company: "ООО Карельские камни", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
   ]);
 
-  const [defaultCompanies, setDefaultCompanies] = React.useState([
+  const [ defaultCompanies, setDefaultCompanies ] = React.useState([
     { company: "258: Покровка 10 (p10 Мск)", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
     { company: "ООО Джи Эф Си", work: true, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: "" },
     { company: "ИП Новикова Юлия Викторовна", work: true, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
@@ -57,9 +57,9 @@ export default function Settings() {
     { company: "ООО Карельские камни", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
   ]);
 
-  const [openAddAccountModal, setOpenAddAccountModal] = useState(false);
-  const [newCompanies, setNewCompanies] = useState([]);
-  const [currentAccEddit, setCurrentAccEddit] = useState([]);
+  const [ openAddAccountModal, setOpenAddAccountModal ] = useState(false);
+  const [ newCompanies, setNewCompanies ] = useState([]);
+  const [ currentAccEddit, setCurrentAccEddit ] = useState([]);
   const [ currentCompanyEddit, setCurrentCompanyEddit ] = useState([]);
 
   const handleClickOpenAddAccountModal = () => {
