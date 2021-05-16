@@ -47,10 +47,10 @@ export default function Salary() {
   const [ range, setRange ] = useState([]);
   const [ openCalendar, setOpenCalendar ] = useState(false);
   const [ openWorksSalary, setOpenWorksSalary ] = useState(false);
-  const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(false);
+  const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(true);
   const [ edditWorker, setEdditWorker ] = useState(false);
   const [ addCoworker, setAddCoworker ] = useState(false);
-  const [ allStatistics, setAllStatistics ] = useState (
+  const [ allStatistic, setAllStatistic ] = useState (
     [
       {
          HOURS: null,
@@ -87,24 +87,63 @@ export default function Salary() {
             <h3 className="title_box__title">Кол-во отработанных часов</h3>
             <img src={del} />
           </div>
-          <div className="all_works_calendar__wrap">
-            <div className="all_works_calendar__dates">
-              <div className="dates__coworkers">Сотрудники</div>
+          <header className="all_works_calendar__header">
+              <div className="all_works_calendar__dates">
+                  <div className="dates__coworkers">Сотрудники</div>
+              </div>
+               <div className="dates__days_numbers">
+                    {
+                      month.map(day => {
+                        return (
+                          <div className="days_numbers__number">
+                            <span className="numbers__number_item">{day.day}</span>
+                            <span className="numbers__number_item">{day.weekDay}</span>
+                          </div>
+                        )
+                      })
+                    }
+                </div>
+              <div className="dates__all_counter">Итого</div>
+          </header>
+          <main className="all_works_calendar__main">
+            <div className="calendar_main__coworker_card">
+              <div className="coworker_card__name">Иванов Иван Иванович</div>
+              <div className="coworker_card__inputs">
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+                <input className="coworker_card__input" defaultValue="0" type="text" />
+              </div>
+              <div className="coworker_card__all">0</div>
             </div>
-            <div className="dates__days_numbers">
-              {
-                month.map(day => {
-                  return (
-                    <div className="days_numbers__number">
-                      <span className="numbers__number_item">{day.day}</span>
-                      <span className="numbers__number_item">{day.weekDay}</span>
-                    </div>
-                  )
-                })
-              }
-            </div>
-            <div className="dates__all_counter">Итого</div>
-          </div>
+          </main>
         </div>
         <div className="salary__eddit_worker"
           style={{display: edditWorker ? "block" : "none"}}
