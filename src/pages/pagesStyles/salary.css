@@ -477,7 +477,7 @@
 
 .numbers__number_item {
   display: block;
-  font-weight: 300;
+  font-weight: 390;
   font-size: .60em;
   text-align: center;
 }
@@ -856,6 +856,7 @@
   width: 100%;
   height: 50px;
   display: flex;
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .coworker_card__name {
@@ -931,8 +932,8 @@
   }
 
   .dates__days_numbers {
-    width: 83%;
-    max-width: 83%;
+    width: 85%;
+    max-width: 85%;
   }
 
   .coworker_card__inputs {
@@ -979,5 +980,9 @@
 
   .salary__all_title_box {
     width: 674px;
+  }
+
+  .coworker_card__name {
+    font-size: .80em;
   }
 }
