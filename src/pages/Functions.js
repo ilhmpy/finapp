@@ -402,4 +402,30 @@ export default class Functions {
     set(month);
     set(m => m.map(d => d));
   };
+
+  getAllStatistic(set, state) {
+    let statistic = {
+      HOURS: 0, PROCENTS: 0, BNS: 0, PREPAIDS: 0, SALARIES: 0, MEDS: 0,
+      OTHERS: 0, FORMS: 0, WARS: 0, WARS: 0, UDS: 0, FINES: 0, TOTAL: 0,
+      SURCHANGES: 0
+    }
+
+    state.forEach(st => {
+      statistic.PROCENTS += Number(st.procent);
+      statistic.BNS += Number(st.bn);
+      statistic.PREPAIDS += Number(st.prepaid);
+      statistic.SALARIES += Number(st.salary);
+      statistic.MEDS += Number(st.med);
+      statistic.OTHERS += Number(st.other);
+      statistic.FORMS += Number(st.form);
+      statistic.WARS += Number(st.war);
+      statistic.UDS += Number(st.ud);
+      statistic.FINES += Number(st.fine);
+      statistic.SURCHANGES += Number(st.surchange);
+      statistic.TOTAL += Number(st.all);
+      statistic.HOURS += Number(st.hours);
+    });
+    console.log(statistic)
+    set(statistic);
+  };
 };

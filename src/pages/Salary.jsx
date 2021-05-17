@@ -16,30 +16,90 @@ export default function Salary() {
   const [ salary, setSalary ] = useState(
     [
       {
-        coworker: "Иванов Иван Иван", position: "Админ", hours: "0", rate: "145", procent: "15", surchange: "0", salary: "41600",
+        coworker: "Иванов Иван Иван", position: "Админ", hours: 0, rate: 145, procent: "15", surchange: "0", salary: "41600",
         prepaid: "0", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
-        all: "40652", accruals: [], daysOnDuty: [], commentary: ""
+        all: "40652", accruals: [], daysOnDuty: [
+          {day: "01", hours: 10},  {day: "02", hours: 0},  {day: "03", hours: 0},
+          {day: "04", hours: 0},  {day: "05", hours: 0},  {day: "06", hours: 0},
+          {day: "07", hours: 0},  {day: "08", hours: 0},  {day: "09", hours: 0},
+          {day: "10", hours: 0},  {day: "11", hours: 0},  {day: "12", hours: 0},
+          {day: "13", hours: 0},  {day: "14", hours: 0},  {day: "15", hours: 0},
+          {day: "16", hours: 0},  {day: "17", hours: 0},  {day: "18", hours: 0},
+          {day: "19", hours: 0},  {day: "20", hours: 0},  {day: "21", hours: 0},
+          {day: "22", hours: 0},  {day: "23", hours: 0},  {day: "24", hours: 0},
+          {day: "25", hours: 0},  {day: "26", hours: 0},  {day: "27", hours: 0},
+          {day: "28", hours: 0},  {day: "29", hours: 0},  {day: "30", hours: 0},
+          {day: "31", hours: 0},
+        ], commentary: "", total: 0, paidType: "Почасовая ставка"
       },
       {
-        coworker: "Иванов Иван М", position: "Админ", hours: "0", rate: "0", procent: "0", surchange: "0", salary: "41600",
+        coworker: "Иванов Иван М", position: "Админ", hours: 0, rate: "0", procent: "0", surchange: "0", salary: "41600",
         prepaid: "11000", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
-        all: "40652", accruals: [], daysOnDuty: [], commentary: ""
+        all: "40652", accruals: [], daysOnDuty: [
+          {day: "01", hours: 0},  {day: "02", hours: 0},  {day: "03", hours: 0},
+          {day: "04", hours: 0},  {day: "05", hours: 0},  {day: "06", hours: 0},
+          {day: "07", hours: 0},  {day: "08", hours: 0},  {day: "09", hours: 0},
+          {day: "10", hours: 0},  {day: "11", hours: 0},  {day: "12", hours: 0},
+          {day: "13", hours: 0},  {day: "14", hours: 0},  {day: "15", hours: 0},
+          {day: "16", hours: 0},  {day: "17", hours: 0},  {day: "18", hours: 0},
+          {day: "19", hours: 0},  {day: "20", hours: 0},  {day: "21", hours: 0},
+          {day: "22", hours: 0},  {day: "23", hours: 0},  {day: "24", hours: 0},
+          {day: "25", hours: 0},  {day: "26", hours: 0},  {day: "27", hours: 0},
+          {day: "28", hours: 0},  {day: "29", hours: 0},  {day: "30", hours: 0},
+          {day: "31", hours: 0},
+        ], commentary: "", total: 0, paidType: "Оклад"
       },
       {
         coworker: "Иванов Иван Рав", position: "Админ", hours: "0", rate: "0", procent: "0",
         surchange: "0", salary: "41600", prepaid: "11000", bn: "0", med: "0", other: "0", war: "0",
-        form: "0", fine: "20", ud: "0", all: "40652", accruals: [], daysOnDuty: [], commentary: ""
+        form: "0", fine: "20", ud: "0", all: "40652", accruals: [], daysOnDuty: [
+          {day: "01", hours: 0},  {day: "02", hours: 0},  {day: "03", hours: 0},
+          {day: "04", hours: 0},  {day: "05", hours: 0},  {day: "06", hours: 0},
+          {day: "07", hours: 0},  {day: "08", hours: 0},  {day: "09", hours: 0},
+          {day: "10", hours: 0},  {day: "11", hours: 0},  {day: "12", hours: 0},
+          {day: "13", hours: 0},  {day: "14", hours: 0},  {day: "15", hours: 0},
+          {day: "16", hours: 0},  {day: "17", hours: 0},  {day: "18", hours: 0},
+          {day: "19", hours: 0},  {day: "20", hours: 0},  {day: "21", hours: 0},
+          {day: "22", hours: 0},  {day: "23", hours: 0},  {day: "24", hours: 0},
+          {day: "25", hours: 0},  {day: "26", hours: 0},  {day: "27", hours: 0},
+          {day: "28", hours: 0},  {day: "29", hours: 0},  {day: "30", hours: 0},
+          {day: "31", hours: 0},
+        ], commentary: "", total: 0, paidType: "Посуточная ставка"
       },
       {
         coworker: "Иванов Иван Красный", position: "Админ", hours: "0", rate: "0", procent: "15",
-        surchange: "0", salary: "41600", accruals: [], commentary: "", daysOnDuty: [], prepaid: "4200", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0",
+        surchange: "0", salary: "41600", accruals: [], commentary: "", daysOnDuty: [
+          {day: "01", hours: 0},  {day: "02", hours: 0},  {day: "03", hours: 0},
+          {day: "04", hours: 0},  {day: "05", hours: 0},  {day: "06", hours: 0},
+          {day: "07", hours: 0},  {day: "08", hours: 0},  {day: "09", hours: 0},
+          {day: "10", hours: 0},  {day: "11", hours: 0},  {day: "12", hours: 0},
+          {day: "13", hours: 0},  {day: "14", hours: 0},  {day: "15", hours: 0},
+          {day: "16", hours: 0},  {day: "17", hours: 0},  {day: "18", hours: 0},
+          {day: "19", hours: 0},  {day: "20", hours: 0},  {day: "21", hours: 0},
+          {day: "22", hours: 0},  {day: "23", hours: 0},  {day: "24", hours: 0},
+          {day: "25", hours: 0},  {day: "26", hours: 0},  {day: "27", hours: 0},
+          {day: "28", hours: 0},  {day: "29", hours: 0},  {day: "30", hours: 0},
+          {day: "31", hours: 0},
+        ], prepaid: "4200", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0",
         ud: "0",
-        all: "0", accruals: [], commentary: ""
+        all: "0", accruals: [], commentary: "", total: 0, paidType: "Посуточная ставка"
       },
       {
         coworker: "Иванов Иван Лан", position: "Админ", hours: "0", rate: "0", procent: "15", surchange: "0", salary: "41600",
         prepaid: "0", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
-        all: "0", accruals: [], commentary: "", daysOnDuty: []
+        all: "0", accruals: [], commentary: "", daysOnDuty: [
+          {day: "01", hours: 0},  {day: "02", hours: 0},  {day: "03", hours: 0},
+          {day: "04", hours: 0},  {day: "05", hours: 0},  {day: "06", hours: 0},
+          {day: "07", hours: 0},  {day: "08", hours: 0},  {day: "09", hours: 0},
+          {day: "10", hours: 0},  {day: "11", hours: 0},  {day: "12", hours: 0},
+          {day: "13", hours: 0},  {day: "14", hours: 0},  {day: "15", hours: 0},
+          {day: "16", hours: 0},  {day: "17", hours: 0},  {day: "18", hours: 0},
+          {day: "19", hours: 0},  {day: "20", hours: 0},  {day: "21", hours: 0},
+          {day: "22", hours: 0},  {day: "23", hours: 0},  {day: "24", hours: 0},
+          {day: "25", hours: 0},  {day: "26", hours: 0},  {day: "27", hours: 0},
+          {day: "28", hours: 0},  {day: "29", hours: 0},  {day: "30", hours: 0},
+          {day: "31", hours: 0},
+        ], total: 0, paidType: "Посуточная ставка"
       },
     ]
   );
@@ -47,33 +107,20 @@ export default function Salary() {
   const [ range, setRange ] = useState([]);
   const [ openCalendar, setOpenCalendar ] = useState(false);
   const [ openWorksSalary, setOpenWorksSalary ] = useState(false);
-  const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(true);
+  const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(false);
   const [ edditWorker, setEdditWorker ] = useState(false);
   const [ addCoworker, setAddCoworker ] = useState(false);
-  const [ allStatistic, setAllStatistic ] = useState (
-    [
-      {
-         HOURS: null,
-         PROCENTS: null,
-         BNS: null,
-         PREPAIDS: null,
-         SALARYS: null,
-         MEDS: null,
-         OTHERS: null,
-         WARS: null,
-         FORMS: null,
-         UDS: null,
-         FINES: null,
-         ALLS: null
-      }
-    ]
-  );
+  const [ allStatistic, setAllStatistic ] = useState ({});
 
   const [ currentEddit, setCurrentEddit ] = useState([]);
   const [ newAccruals, setNewAccruals ] = useState([]);
   const [ month, setMonth ] = useState([]);
+  const [ totalCalendarHours, setTotalCalendarHours ] = useState(0);
 
-  useEffect(() => Funcs.getCurrentMonth(setMonth), []);
+  useEffect(() => {
+    Funcs.getCurrentMonth(setMonth);
+    Funcs.getAllStatistic(setAllStatistic, salary);
+  }, []);
 
   return (
     <div className="salary">
@@ -85,7 +132,7 @@ export default function Salary() {
         <div className="salary__all_works_calendar" style={{display: openAllWorksSalary ? "block" : "none"}}>
           <div className="all_works_calendar__title_box">
             <h3 className="title_box__title">Кол-во отработанных часов</h3>
-            <img src={del} />
+            <img src={del} onClick={e => setOpenAllWorksSalary(false)} />
           </div>
           <header className="all_works_calendar__header">
               <div className="all_works_calendar__dates">
@@ -106,44 +153,53 @@ export default function Salary() {
               <div className="dates__all_counter">Итого</div>
           </header>
           <main className="all_works_calendar__main">
-            <div className="calendar_main__coworker_card">
-              <div className="coworker_card__name">Иванов Иван Иванович</div>
-              <div className="coworker_card__inputs">
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-                <input className="coworker_card__input" defaultValue="0" type="text" />
-              </div>
-              <div className="coworker_card__all">0</div>
-            </div>
+            {
+              salary.map(sal => {
+                sal.total = 0;
+
+                sal.daysOnDuty.forEach(day => {
+                  sal.total += Number(day.hours);
+                });
+
+                return (
+                  <div className="calendar_main__coworker_card" id={salary.indexOf(sal)}>
+                    <div className="coworker_card__name">{sal.coworker}</div>
+                    <div className="coworker_card__inputs">
+                      {
+                        sal.daysOnDuty.map(duty => {
+                          return (
+                            <input
+                                style={
+                                  {
+                                    display: sal.daysOnDuty.indexOf(duty) + 1 > month.length ? "none" : "block"
+                                  }
+                                }
+                                className="coworker_card__input"
+                                key={Math.random() * 10}
+                                id={sal.daysOnDuty.indexOf(duty)}
+                                defaultValue={duty.hours}
+                                type="text"
+                                maxLength="2"
+                                onKeyUp={e => {
+                                  if (!isNaN(e.target.value) & Funcs.checkerLength(e.target.value)) {
+                                    salary[e.target.parentNode.parentNode.id].daysOnDuty[e.target.id].hours = Number(e.target.value);
+                                    setSalary(sl => sl.map(s => s));
+                                  };
+                                }}
+                            />
+                          )
+                        })
+                      }
+                    </div>
+                    <div className="coworker_card__all">{sal.total}</div>
+                  </div>
+                )
+              })
+            }
           </main>
+          <button className="coworker__btn" onClick={e => {
+            setOpenAllWorksSalary(false);
+          }}>Сохранить</button>
         </div>
         <div className="salary__eddit_worker"
           style={{display: edditWorker ? "block" : "none"}}
@@ -256,7 +312,9 @@ export default function Salary() {
                       ud: slItem.ud,
                       all: all < 0 ? 0 : all,
                       accruals: newAccruals,
-                      commentary:  document.querySelector(".rec__commentary").value
+                      commentary:  document.querySelector(".rec__commentary").value,
+                      total: slItem.total,
+                      daysOnDuty: slItem.daysOnDuty
                     };
                   };
                 });
@@ -382,21 +440,21 @@ export default function Salary() {
           <div className="salary__all">
             <div className="salary__all_title_box">
                 <h3 className="salary__all_title">Итого:</h3>
-                <h3 className="salary__all_item" id="item_zp">2000</h3>
+                <h3 className="salary__all_item" id="item_zp">{allStatistic.HOURS}</h3>
             </div>
             <div className="salary__all_items">
-                <h3 className="salary__all_item">15</h3>
-                <h3 className="salary__all_item">1000</h3>
-                <h3 className="salary__all_item">41610</h3>
-                <h3 className="salary__all_item">11000</h3>
-                <h3 className="salary__all_item">4368</h3>
-                <h3 className="salary__all_item">958</h3>
-                <h3 className="salary__all_item">123</h3>
-                <h3 className="salary__all_item">12</h3>
-                <h3 className="salary__all_item">554</h3>
-                <h3 className="salary__all_item">91</h3>
-                <h3 className="salary__all_item">12</h3>
-                <h3 className="salary__all_item" id="items__all">320</h3>
+                <h3 className="salary__all_item">{allStatistic.PROCENTS}</h3>
+                <h3 className="salary__all_item">{allStatistic.SURCHANGES}</h3>
+                <h3 className="salary__all_item">{allStatistic.SALARIES}</h3>
+                <h3 className="salary__all_item">{allStatistic.PREPAIDS}</h3>
+                <h3 className="salary__all_item">{allStatistic.BNS}</h3>
+                <h3 className="salary__all_item">{allStatistic.MEDS}</h3>
+                <h3 className="salary__all_item">{allStatistic.OTHERS}</h3>
+                <h3 className="salary__all_item">{allStatistic.WARS}</h3>
+                <h3 className="salary__all_item">{allStatistic.FORMS}</h3>
+                <h3 className="salary__all_item">{allStatistic.UDS}</h3>
+                <h3 className="salary__all_item">{allStatistic.FINES}</h3>
+                <h3 className="salary__all_item" id="items__all">{allStatistic.TOTAL}</h3>
             </div>
           </div>
         </div>
