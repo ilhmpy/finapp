@@ -19,7 +19,7 @@ export default function Salary() {
         coworker: "Иванов Иван Иван", position: "Админ", hours: 0, rate: 145, procent: "15", surchange: "0", salary: "41600",
         prepaid: "0", bn: "0", med: "0", other: "0", war: "0", form: "0", fine: "0", ud: "0",
         all: "40652", accruals: [], daysOnDuty: [
-          {day: "01", hours: 10},  {day: "02", hours: 0},  {day: "03", hours: 0},
+          {day: "01", hours: 10}, {day: "02", hours: 0},  {day: "03", hours: 0},
           {day: "04", hours: 0},  {day: "05", hours: 0},  {day: "06", hours: 0},
           {day: "07", hours: 0},  {day: "08", hours: 0},  {day: "09", hours: 0},
           {day: "10", hours: 0},  {day: "11", hours: 0},  {day: "12", hours: 0},
@@ -161,6 +161,8 @@ export default function Salary() {
                   sal.total += Number(day.hours);
                 });
 
+                sal.hours = sal.total;
+
                 return (
                   <div className="calendar_main__coworker_card" id={salary.indexOf(sal)}>
                     <div className="coworker_card__name">{sal.coworker}</div>
@@ -199,6 +201,7 @@ export default function Salary() {
           </main>
           <button className="coworker__btn" onClick={e => {
             setOpenAllWorksSalary(false);
+            Funcs.getAllStatistic(setAllStatistic, salary);
           }}>Сохранить</button>
         </div>
         <div className="salary__eddit_worker"
@@ -223,10 +226,7 @@ export default function Salary() {
                       <h3 className="retired delete rec__card_delete"
                         onClick={e => {
                           let accrual = newAccruals[e.target.parentNode.id];
-                          setNewAccruals(s => s.filter(t => s.indexOf(t) != newAccruals.indexOf(accrual)));
-                          setSalary(sal => sal.map(sl => sl));
-                          setNewAccruals(d => d.map(s => s));
-
+                          setNewAccruals(s => s.filter(t => s.indexOf(t) != s.indexOf(accrual)));
                         }}
                       >Удалить</h3>
                       <div className="rec__card_box">
@@ -318,7 +318,7 @@ export default function Salary() {
                     };
                   };
                 });
-
+                Funcs.getAllStatistic(setAllStatistic, salary);
                 setSalary(sl => sl.map(s => s));
                 setEdditWorker(false);
               }}

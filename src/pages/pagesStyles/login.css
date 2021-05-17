@@ -43,6 +43,11 @@
   border-bottom: 1px solid #0E0E10;
   margin-bottom: 10px;
   line-height: 24px;
+  transition: 1s;
+}
+
+.enter__input:focus {
+  border-bottom: 1px solid #2F80ED;
 }
 
 .enter__input::placeholder {
