@@ -1,13 +1,14 @@
 .login {
   width: 100%;
-  height: 670px;
+  height: 130%;
+  min-height: 1200px;
   background: url("./img/login__bg.svg");
   background-size: cover;
 }
 
 .login__black-bg {
   width: 100%;
-  height: 100%;
+  height: 1200px;
   background: rgba(0, 0, 0, 80%);
   padding-top: 130px;
 }
@@ -76,6 +77,11 @@
   font-weight: 100;
   font-size: .80em;
   margin-top: 30px;
+}
+
+.enter__button:hover {
+  background: #2F80ED;
+  color: #fff;
 }
 
 .enter__forgot {
@@ -197,7 +203,7 @@
 }
 
 .code__counter {
-  margin-top: 20px;
+  margin-top: 50px;
   color: #828282;
   display: block;
   font-size: .70em;
@@ -214,6 +220,14 @@
 
 .reset__button {
   margin-top: 70px;
+}
+
+.badrequest {
+  font-weight: 400;
+  font-size: .70em;
+  color: #EB5757;
+  margin-top: -12px;
+  user-select: none;
 }
 
 @media only screen and (min-device-width: 1400px) {

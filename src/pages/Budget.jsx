@@ -624,7 +624,7 @@ export default function Budget() {
                                   <div className="budget__file_item two__files_item file_dop">{exp.sum}</div>
                                   <div className="budget__file_item two__files_item">{exp.description}</div>
                                   <div className="budget__file_item two__files_item">{exp.contributed}</div>
-                                  <div className="budget__file_item ch">
+                                  <div className="budget__file_item ch budget__expense_checkbox">
                                       <span className="budget__item_checkbox"
                                         style={{background: exp.checked ? "#fff" : "rgba(63, 64, 240, 0.25)"}}
                                         onClick={e => {

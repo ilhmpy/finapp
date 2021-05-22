@@ -71,33 +71,21 @@ export default function Settings() {
   };
 
   React.useEffect(() => {
-    async function fetchData() {
-      let token = localStorage.getItem("token");
-      setToken(token);
-      let req = await fetch(
-        "http://localhost:8000/api/app/importers/?format=json",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Token ${token}`,
-          },
+    async function getUsers() {
+      let request = await fetch("http://127.0.0.1:8000/api/accounts/users/", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
         }
-      );
-      if (req.status === 200) {
-        let data = await req.json();
-        let newRows = [];
-        for (let d of data) {
-          console.log(d);
-          newRows.push(
-            createData(d.company_name, d.production_type, d.comment, d.id)
-          );
-        }
-        setRows(newRows);
-      } else {
-        console.log(req);
-      }
-    }
-    fetchData();
+      });
+      let requestMassive = [];
+      let answer = await request.json();
+      if (request.status == 200) {
+        answer.forEach(answ => requestMassive = [...requestMassive, answ]);
+        console.log(requestMassive);
+      } else console.error(answer);
+    };
+    getUsers();
   }, []);
 
   return (

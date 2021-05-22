@@ -425,7 +425,7 @@ export default class Functions {
       statistic.TOTAL += Number(st.all);
       statistic.HOURS += Number(st.hours);
     });
-    console.log(statistic)
-    set(statistic);
+    set([statistic]);
+    set(sl => sl.map(s => s));
   };
 };

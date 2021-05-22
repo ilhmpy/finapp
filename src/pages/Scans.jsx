@@ -114,7 +114,26 @@ export default function Scans() {
     let month = String(date.getMonth() + 1).padStart(2, '0');
     let year = date.getFullYear();
     return `${day}.${month}.${year}`;
-  }
+  };
+
+  useEffect(() => {
+    async function getScans() {
+      let request = await fetch("http://127.0.0.1:8000/api/app/scan/", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        },
+      });
+
+      let answer = await request.json();
+      console.log(answer.status)
+      if (answer.status == 200) {
+        console.log(answer)
+      } else {}
+    };
+
+    getScans();
+  }, []);
 
   return (
     <div className="Scans">
@@ -291,8 +310,8 @@ export default function Scans() {
                             };
                           }}
                         >
-                          <span className="card__type">{fl.type}</span>
-                          <a className="card__img">{fl.name}</a>
+                          <span className="card__type card__inner_box">{fl.type}</span>
+                          <a className="card__img card__inner_box">{fl.name}</a>
                           <span className="checkbox card__checkbox" onClick={e => {
                             if (e.target.className == "checkbox card__checkbox") {
                                 changeChecked(e.target.parentNode.querySelector(".card__img").innerText);

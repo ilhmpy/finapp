@@ -124,7 +124,6 @@ class Invoice(models.Model):
   payment_type = models.CharField(max_length=255, default="cash")
   is_confirmed = models.BooleanField(default=False)
 
-  
 class Scan(models.Model):
   scan_types = [
     ('1', 'Накладная'),
@@ -132,10 +131,12 @@ class Scan(models.Model):
     ('3', 'Сканы'),
     ('4', 'Уставные Документы'),
     ]
-  type = models.CharField(default='1', max_length=255, choices=scan_types)
-  date = models.DateField(auto_now_add=True)
+  type_scan = models.CharField(default='1', max_length=255, choices=scan_types)
+  added_at = models.DateField(auto_now_add=True)
   name = models.CharField(default="", max_length=255)
   file = models.FileField()
+  facility = models.ForeignKey(Facility, default=None, blank=True, null=True, on_delete=models.CASCADE)
+
 
   def __str__(self):
     return self.name

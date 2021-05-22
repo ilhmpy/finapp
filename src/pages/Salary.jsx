@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Functions from "./Functions.js";
 import CalendarModal from "../components/Calendar.jsx";
 import "./pagesStyles/main.css";
@@ -110,7 +110,26 @@ export default function Salary() {
   const [ openAllWorksSalary, setOpenAllWorksSalary ] = useState(false);
   const [ edditWorker, setEdditWorker ] = useState(false);
   const [ addCoworker, setAddCoworker ] = useState(false);
-  const [ allStatistic, setAllStatistic ] = useState ({});
+  const [ allStatistic, setAllStatistic ] = useState (
+    [
+      {
+        HOURS: 0,
+        PROCENTS: 0,
+        BNS: 0,
+        PREPAIDS: 0,
+        SALARIES: 0,
+        MEDS: 0,
+        OTHERS: 0,
+        FORMS: 0,
+        WARS: 0,
+        WARS: 0,
+        UDS: 0,
+        FINES: 0,
+        TOTAL: 0,
+        SURCHANGES: 0
+      }
+    ]
+  );
 
   const [ currentEddit, setCurrentEddit ] = useState([]);
   const [ newAccruals, setNewAccruals ] = useState([]);
@@ -171,7 +190,7 @@ export default function Salary() {
                         sal.daysOnDuty.map(duty => {
                           return (
                             <input
-                                style={
+                               style={
                                   {
                                     display: sal.daysOnDuty.indexOf(duty) + 1 > month.length ? "none" : "block"
                                   }
@@ -200,8 +219,8 @@ export default function Salary() {
             }
           </main>
           <button className="coworker__btn" onClick={e => {
-            setOpenAllWorksSalary(false);
             Funcs.getAllStatistic(setAllStatistic, salary);
+            setOpenAllWorksSalary(false);
           }}>Сохранить</button>
         </div>
         <div className="salary__eddit_worker"
@@ -211,9 +230,12 @@ export default function Salary() {
             <h3 className="eddit_worker__title">Иванов Иван Иванович</h3>
             <h3 className="retired delete" id="title_box__del"
               onClick={e => {
-                setSalary(sal => sal.filter(s => sal.indexOf(s) != e.target.parentNode.parentNode.id));
+                //setSalary(sal => sal.filter(s => sal.indexOf(s) != e.target.parentNode.parentNode.id));
+                salary.splice(e.target.parentNode.parentNode.id, 1);
                 setSalary(sl => sl.map(s => s));
-                setEdditWorker(false);
+                Funcs.getAllStatistic(setAllStatistic, salary);
+                setAllStatistic(all => all.map(al => al));
+                setEdditWorker(false);;
               }}
             >Удалить</h3>
           </div>
@@ -440,21 +462,21 @@ export default function Salary() {
           <div className="salary__all">
             <div className="salary__all_title_box">
                 <h3 className="salary__all_title">Итого:</h3>
-                <h3 className="salary__all_item" id="item_zp">{allStatistic.HOURS}</h3>
+                <h3 className="salary__all_item" id="item_zp">{allStatistic[0].HOURS}</h3>
             </div>
             <div className="salary__all_items">
-                <h3 className="salary__all_item">{allStatistic.PROCENTS}</h3>
-                <h3 className="salary__all_item">{allStatistic.SURCHANGES}</h3>
-                <h3 className="salary__all_item">{allStatistic.SALARIES}</h3>
-                <h3 className="salary__all_item">{allStatistic.PREPAIDS}</h3>
-                <h3 className="salary__all_item">{allStatistic.BNS}</h3>
-                <h3 className="salary__all_item">{allStatistic.MEDS}</h3>
-                <h3 className="salary__all_item">{allStatistic.OTHERS}</h3>
-                <h3 className="salary__all_item">{allStatistic.WARS}</h3>
-                <h3 className="salary__all_item">{allStatistic.FORMS}</h3>
-                <h3 className="salary__all_item">{allStatistic.UDS}</h3>
-                <h3 className="salary__all_item">{allStatistic.FINES}</h3>
-                <h3 className="salary__all_item" id="items__all">{allStatistic.TOTAL}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].PROCENTS}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].SURCHANGES}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].SALARIES}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].PREPAIDS}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].BNS}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].MEDS}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].OTHERS}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].WARS}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].FORMS}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].UDS}</h3>
+                <h3 className="salary__all_item">{allStatistic[0].FINES}</h3>
+                <h3 className="salary__all_item" id="items__all">{allStatistic[0].TOTAL}</h3>
             </div>
           </div>
         </div>

@@ -156,7 +156,8 @@ function Registry() {
   let [ clicks, setClicks ] = React.useState(0);
   const [ innerNavChecked, setInnerNavChecked ] = React.useState(false);
   const [ acceptNavChecked, setAcceptNavChecked ] = React.useState(false);
-  const [ modalAccept, setModalAccept ] = React.useState(false);
+
+  let modalAccept = false;
 
   const [ modalCalendarOpen, setModalCalendarOpen ] = useState(false);
   const [ range, setRange ] = useState([]);
@@ -222,9 +223,13 @@ function Registry() {
           <textarea className="window__textarea" id="add-textarea"></textarea>
           <label className="window__checker">
             <span className="check" onClick={e => {
-              if (e.target.className == "check") e.target.classList.add("active");
-              else if (e.target.className == "check active") e.target.classList.remove("active");
-              setModalAccept(!modalAccept);
+              if (e.target.className == "check") {
+                e.target.classList.add("active");
+                modalAccept = true;
+              } else if (e.target.className == "check active") {
+                modalAccept = false;
+                e.target.classList.remove("active")
+              };
             }}></span>
             <h3 className="title">Сразу подтвердить</h3>
           </label>
@@ -232,6 +237,7 @@ function Registry() {
             <button className="window__btn" onClick={e => {
               document.querySelector(".add-window").style.display = "none";
               document.querySelector(".black-registry-bg").style.display = "none";
+              modalAccept = false;
             }}>Закрыть</button>
             <button className="window__btn" onClick={e => {
               if (
@@ -260,6 +266,7 @@ function Registry() {
           Funcs.findAndDelete(currentEddit, registry, defaultRegistry, setRegistry, setDefaultRegistry);
           Funcs.changeStateDomElement("", document.querySelector(".eddit-window"));
           Funcs.changeStateDomElement("", document.querySelector(".black-registry-bg"));
+          modalAccept = false;
         }}>Удалить</span></div>
         <div className="window__inputs">
           <div className="window__input-box">
@@ -318,8 +325,13 @@ function Registry() {
         <textarea className="window__textarea" id="eddit-textarea"></textarea>
           <label className="window__checker">
             <span className="check" onClick={e => {
-              e.target.classList.add("active");
-              setModalAccept(!modalAccept);
+              if (e.target.className == "check") {
+                e.target.classList.add("active");
+                modalAccept = true;
+              } else if (e.target.className == "check active") {
+                e.target.classList.remove("active");
+                modalAccept = false;
+              };
             }}></span>
             <h3 className="title">Подтверждено</h3>
           </label>
@@ -327,7 +339,8 @@ function Registry() {
             <button className="window__btn" onClick={e => {
               document.querySelector(".eddit-window").style.display = "none";
               document.querySelector(".black-registry-bg").style.display = "none";
-              setModalAccept(false);
+              modalAccept = false;
+              document.querySelector(".check").classList.remove("active");
             }}>Закрыть</button>
             <button className="window__btn" onClick={e => {
               edditWaybill = Funcs.createObject(
@@ -340,8 +353,9 @@ function Registry() {
                 document.querySelector("#eddit-textarea").value,
                 modalAccept
               );
+              document.querySelector(".check").classList.remove("active");
               Funcs.edditDocument(currentEddit, registry, defaultRegistry, edditWaybill, setRegistry, setDefaultRegistry);
-              setModalAccept(false);
+              modalAccept = false;
               document.querySelector(".eddit-window").style.display = "none";
               document.querySelector(".black-registry-bg").style.display = "none";
             }}>Сохранить</button>
@@ -546,6 +560,7 @@ function Registry() {
                                        );
                                        document.querySelector('.black-registry-bg').style.display = "block";
                                        document.querySelector('.eddit-window').style.display = "block";
+                                       Funcs.scrollTo();
                                      }}/>
                                   </div>
                              </div>

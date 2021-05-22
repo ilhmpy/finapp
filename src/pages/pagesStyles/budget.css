@@ -1,6 +1,6 @@
 .budget {
   width: 100%;
-  height: 800px;
+  min-height: 1200px;
   background: #F3F4F8;
 }
 
@@ -637,7 +637,7 @@
   }
 
   .budget__item {
-    width: 215px;
+    width: 227px;
   }
 
   .budget__file_item {
@@ -654,22 +654,38 @@
   }
 
   .two__files_item {
-      width: 225px;
+      width: 240px;
   }
 
   .budget__file_item:nth-child(3) {
     font-size: .70em;
   }
 
-  .tow__files_item:nth-child(1) {
-
-  }
-
-  .tow__files_item:nth-child(2) {
-
-  }
-
   .file_dop {
     padding-left: 28px;
+  }
+
+  .two__files_item:nth-child(1) {
+    width: 221px;
+  }
+
+  .budget__item_checkbox:nth-child(2) {
+    margin-left: 22px;
+  }
+
+  .budget__expense_checkbox {
+    margin-left: 72px;
+  }
+
+  #img {
+    margin-right: 25px;
+  }
+
+  .budget__item:nth-child(4) {
+    padding-left: 54px;
+  }
+
+  .budget__item:nth-child(5) {
+    padding-left: 58px;
   }
 }

@@ -9,9 +9,9 @@ import django_filters
 from accounts.models import Role, User
 from accounts.views import IsAdminUser
 from .models import UserFacility, Facility, Employee, Revenue
-from .models import Importer, ProductionType
+from .models import Importer, ProductionType, Scan, Invoice
 
-from .serializers import EmployeeSerializer, RevenueSerializer, ImporterSerializer, ProductionTypeSerializer, FacilitySerializer
+from .serializers import EmployeeSerializer, RevenueSerializer, ImporterSerializer, ProductionTypeSerializer, FacilitySerializer, ScanSerializer, InvoiceSerializer
 
 
 class FacilityList(generics.ListCreateAPIView):
@@ -58,6 +58,21 @@ class EmployeeList(APIView):
 class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = Employee.objects.all()
   serializer_class = EmployeeSerializer
+  def put(self, request, pk):
+    snippet = Employee.objects.get(pk=pk)
+    serializer = EmployeeSerializer(snippet, data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+  def delet(self, request, pk):
+    article = self.get_object(pk)
+    article.delete()
+    return Response({
+      "message": "Employee with id `{}` has been deleted.".format(pk)
+    }, status=204)
+
 
 
 class ImporterFilter(django_filters.FilterSet):
@@ -98,6 +113,20 @@ class ImporterDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = Importer.objects.all()
   serializer_class = ImporterSerializer
 
+  def put(self, request, pk):
+    object = Importer.objects.get(pk=pk)
+    serializer = ImporterSerializer(object, data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+  def delet(self, request, pk):
+    importer = self.get_object(pk)
+    importer.delete()
+    return Response({
+      "message": "Employee with id `{}` has been deleted.".format(pk)
+    }, status=204)
 
 class ProductionTypeList(generics.ListCreateAPIView):
   queryset = ProductionType.objects.all()
@@ -125,26 +154,92 @@ class RevenueList(generics.ListCreateAPIView):
   filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
   ordering_fields = ['cash_income', 'cash_free_income', 'np', 'added_at']
   filterset_class = RevenueDateFilter
+  def get(self, request, format=None):
+    candidates = Revenue.objects.all()
+    serializer = RevenueSerializer(candidates, many=True)
+    return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
 class RevenueDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = Revenue.objects.all()
   serializer_class = RevenueSerializer
-  
-class Scan(APIView):
+class ScanDateFilter(django_filters.FilterSet):
+  added_at = django_filters.DateFromToRangeFilter()
+
+  class Meta:
+    model = Scan
+    fields = ['added_at']
+
+class ScanClass(generics.ListCreateAPIView):
+  queryset = Scan.objects.all()
+  serializer_class = ScanSerializer
+  filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+  ordering_fields = ['name', 'type_scan', 'file', 'added_at', 'facility']
+  filterset_class = ScanDateFilter
   def get(self, request):
     scan = Scan.objects.all()
-    data = self.request.query_params.get('data')
-    typeScan = self.request.query_params.get('scan_type')
-    name = self.request.query_params.get('name')
-    scan = scan.filter('data')
-    scan = scan.filter('name')
-    return Response({"scan": scan})
-
+    serializer = ScanSerializer(scan, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
   def post(self, request):
-    newScan = request.data.get('newScan')
-    # Create an article from the above data
-    serializer = serializersScan(data=newScan)
+    serializer = InvoiceSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-      scan_saved = serializer.save()
-    return Response({"success": "Scan '{}' created successfully".format(scan_saved.title)})
+      saved = serializer.save()
+    return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+class ScanDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = Scan.objects.all()
+  serializer_class = ScanSerializer
+  def put(self, request, pk):
+    object = Scan.objects.get(pk=pk)
+    serializer = ScanSerializer(object, data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+  def delet(self, request, pk):
+    importer = self.get_object(pk)
+    importer.delete()
+    return Response({
+      "message": "Employee with id `{}` has been deleted.".format(pk)
+    }, status=204)
+
+
+class InvoiceDateFilter(django_filters.FilterSet):
+  added_at = django_filters.DateFromToRangeFilter()
+  class Meta:
+    model = Invoice
+    fields = ['date']
+
+
+class InvoiceList(generics.ListCreateAPIView):
+  queryset = Invoice.objects.all()
+  serializer_class = InvoiceSerializer
+  filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+  ordering_fields = ['date','added_by', 'added_at' 'invoice_number','amount', 'tax_amount', 'importer', 'facility','comment','payment_type', 'is_confirmed ']
+  filterset_class = InvoiceDateFilter
+  def get(self, requests):
+    invoice = Invoice.objects.all()
+    serializer = InvoiceSerializer(invoice, many=True)
+    return Response(data=serializer.data, status=status.HTTP_200_OK)
+  def post(self, request):
+    serializer = InvoiceSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+      invoice_saved = serializer.save()
+    return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+class InvoicDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = Invoice.objects.all()
+  serializer_class = InvoiceSerializer
+  def put(self, request, pk):
+    object = Invoice.objects.get(pk=pk)
+    serializer = InvoiceSerializer(object, data=request.data)
+    if serializer.is_valid():
+      serializer.save()
+      return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+  def delet(self, request, pk):
+    object = self.get_object(pk)
+    object.delete()
+    return Response({
+      "message": "Employee with id `{}` has been deleted.".format(pk)
+    }, status=204)
+
+

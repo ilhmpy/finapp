@@ -19,4 +19,8 @@ urlpatterns = [
     path('production-type/<str:pk>', views.ProductionTypeDetail.as_view()),
     path('importers/', views.ImporterList.as_view()),
     path('importers/<str:pk>', views.ImporterDetail.as_view()),
+    path('scan/', views.ScanClass.as_view()),
+    path('scan/<str:pk>', views.ScanDetail.as_view()),
+    path('invoice/', views.InvoiceList.as_view()),
+    path('invoice/<str:pk>', views.InvoicDetail.as_view()),
 ]

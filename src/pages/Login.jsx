@@ -25,6 +25,7 @@ export default function Login() {
   const [currentScreen, setCurrentScreen] = React.useState(0);
   const [resetPassword, setResetPassword] = React.useState("");
   const [resetPassword2, setResetPassword2] = React.useState("");
+  const [ badRequest, setBadRequest ] = useState(false);
 
   const handleClickOpenSendCode = () => {
     setCurrentScreen(0);
@@ -56,13 +57,15 @@ export default function Login() {
       localStorage.setItem("token", res.token);
       console.log(localStorage.getItem("token"));
       window.location.href = "/home";
+      setBadRequest(false);
     } else {
+      setBadRequest(true);
       setLoginError(true);
     }
   };
 
-  const resPassword = async (e) => {
-    let request = await fetch("http://127.0.0.1:8000/api/accounts/auth/password-reset/", {
+  async function postResetPassword() {
+    let request = await fetch("/api/accounts/auth/password-reset/", {
       method: "POST",
       body: JSON.stringify({
         email: email
@@ -71,12 +74,13 @@ export default function Login() {
         "content-type": "application/json"
       }
     });
-    let requestTake = await request.json();
-    console.log(requestTake);
-    if (request.code == 200) {
-      console.log("code: 200 request: successfull")
-      localStorage.setItem("token", requestTake.token);
-      console.log(localStorage.getItem("token"));
+
+    let requestAnswer = await request.json();
+    console.log(requestAnswer)
+    if (requestAnswer.status === 200) {
+      console.log(`REQUEST: ${requestAnswer.status}`)
+    } else {
+
     }
   }
 
@@ -89,7 +93,7 @@ export default function Login() {
     moreMinut = setInterval(() => {
       document.querySelector(".count").innerText = `${seconds > 0 ? "1" : "0"}:${seconds > 0 ? seconds-- : seconds = 59}`;
     }, 1000);
-  }
+  };
 
   return (
     <div className="login">
@@ -110,16 +114,12 @@ export default function Login() {
                 <span className="enter__input-title">Пароль</span>
                 <input type={eye ? "text" : "password"} className="enter__input log_inputs" id="password" />
                 <i className={eye ? "fas fa-eye" : "fas fa-eye-slash"} id="eye" onClick={e => {
-                setEye(false);
-                clicks++;
-                if (clicks >= 2) {
-                  clicks = 0;
-                  setEye(true);
-                }
+                setEye(!eye);
                 }}></i>
                 </label>
                 <input type="submit" className="enter__button" value="Войти" />
               </form>
+              <h3 className="badrequest" style={{display: badRequest ? "block" : "none"}}>Неверен логин или пароль.</h3>
             <h4 className="enter__forgot" onClick={e => changeStateDomElement(
               document.querySelector(".recovery__password"),
               document.querySelector(".form__enter")
@@ -140,7 +140,8 @@ export default function Login() {
               Funcs.clearAdd(".rec_inputs")
               if (document.querySelector("#email").value.length > 0) {
                   email = document.querySelector("#email").value;
-                  resPassword();
+                  console.log(email)
+                  postResetPassword();
                   changeStateDomElement(document.querySelector(".recovery__code"), document.querySelector(".recovery__password"));
                   counter();
               };
@@ -163,12 +164,12 @@ export default function Login() {
                 changeStateDomElement(document.querySelector(".reset__password"), document.querySelector(".recovery__code"));
               }}>
                 <div className="code__inputs">
-                  <input className="code__input" placeholder="0" />
-                  <input className="code__input" placeholder="0" />
-                  <input className="code__input" placeholder="0" />
-                  <input className="code__input" placeholder="0" />
-                  <input className="code__input" placeholder="0" />
-                  <input className="code__input" placeholder="0" />
+                  <input className="code__input" defaultValue="0" />
+                  <input className="code__input" defaultValue="0" />
+                  <input className="code__input" defaultValue="0" />
+                  <input className="code__input" defaultValue="0" />
+                  <input className="code__input" defaultValue="0" />
+                  <input className="code__input" defaultValue="0" />
                 </div>
                 <input type="submit" className="enter__button code__button" value="Подтвердить код" />
               </form>

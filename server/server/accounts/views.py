@@ -17,64 +17,64 @@ from rest_framework.decorators import api_view, permission_classes
 
 
 class IsAdminUser(BasePermission):
-  def has_permission(self, request, view):
-    return request.user and request.user.is_staff
+    def has_permission(self, request, view):
+        return request.user and request.user.is_staff
 
 
 class UserList(generics.ListCreateAPIView):
-  queryset = User.objects.all()
-  serializer_class = UserSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
-  permission_classes = [
-    IsAdminUser,
-  ]
-  queryset = User.objects.all()
-  serializer_class = UserSerializer
+    permission_classes = [
+        IsAdminUser,
+    ]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class RegisterAPI(generics.GenericAPIView):
-  serializer_class = RegisterSerializer
+    serializer_class = RegisterSerializer
 
-  def post(self, request, *args, **kwargs):
-    serializer = self.get_serializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    user = serializer.save()
-    return Response({
-      "user": UserSerializer(user, context=self.get_serializer_context()).data,
-      "token": AuthToken.objects.create(user)[1],
-    })
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1],
+        })
 
 
 class LoginAPI(generics.GenericAPIView):
-  serializer_class = LoginSerializer
+    serializer_class = LoginSerializer
 
-  def post(self, request, *args, **kwargs):
-    serializer = self.get_serializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    user = serializer.validated_data
-    return Response({
-      "user": UserSerializer(user, context=self.get_serializer_context()).data,
-      "token": AuthToken.objects.create(user)[1],
-    })
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1],
+        })
 
 
 @api_view(['GET'])
 @permission_classes((permissions.IsAuthenticated, ))
 def validate(request):
-  is_auth = request.user.is_active
-  return JsonResponse({'authenticated': is_auth})
+    is_auth = request.user.is_active
+    return JsonResponse({'authenticated': is_auth})
 
 
 class UserAPI(generics.RetrieveAPIView):
-  permission_classes = [
-    permissions.IsAuthenticated,
-  ]
-  serializer_class = UserSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    serializer_class = UserSerializer
 
-  def get_object(self):
-    return self.request.user
+    def get_object(self):
+        return self.request.user
 
 
 @receiver(reset_password_token_created)
@@ -93,12 +93,14 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
     context = {
         'current_user': reset_password_token.user,
         'email': reset_password_token.user.email,
-        'reset_password_url': "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
+        'reset_password_url': "{}?token={}".format(reverse('reset-password-request'), reset_password_token.key)
     }
 
     # render email text
-    email_html_message = render_to_string('accounts/user_reset_password.html', context)
-    email_plaintext_message = render_to_string('accounts/user_reset_password.txt', context)
+    email_html_message = render_to_string(
+        'accounts/user_reset_password.html', context)
+    email_plaintext_message = render_to_string(
+        'accounts/user_reset_password.txt', context)
 
     msg = EmailMultiAlternatives(
         # title:

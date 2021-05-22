@@ -617,12 +617,15 @@
   .registry__nav-commentary {
     width: 531px;
   }
+
   .registry__nav-company {
     margin-left: 96px;
   }
+
   .registry__item {
     position: relative;
   }
+
   .registry__save {
     position: absolute;
     right: 0;
@@ -634,7 +637,27 @@
   .registry__nav-company {
     margin-left: 386px;
   }
+
   .registry__item .registry__checkbox {
     margin-left: 249px;
+  }
+
+  .registry__company {
+    width: 217px;
+    font-size: .60em;
+  }
+
+  .registry__nav-types {
+    margin-left: 115px;
+  }
+
+  .registry__nav-commentary {
+    margin-left: 190px;
+  }
+
+  .registry__commentary {
+    margin-left: 212px;
+    font-size: .56em;
+    width: 595px;
   }
 }

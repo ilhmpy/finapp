@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Facility, Importer, ProductionType
-from .models import UserFacility, Employee, Revenue, Invoice
+from .models import UserFacility, Employee, Revenue, Invoice, Scan
 
 
 class FacilitySerializer(serializers.ModelSerializer):
@@ -52,9 +52,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
     model = Invoice
     fields = '__all__'
 
-class serializersScan(serializers.ModelSerializer):
+class ScanSerializer(serializers.ModelSerializer):
   class Meta:
     model = Scan
     fields = '__all__'
-  def create(self, validated_data):
-    return Scan.objects.create(**validated_data)

@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from rest_framework.settings import api_settings
+from datetime import timedelta
 from pathlib import Path
 import os
 
@@ -74,7 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'libraries': {  
+            'libraries': {
                 'staticfiles': 'django.templatetags.static',
             },
         },
@@ -144,22 +146,18 @@ REST_FRAMEWORK = {
 }
 
 
-from datetime import timedelta
-from rest_framework.settings import api_settings
-
-
 REST_KNOX = {
-  'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
-  'AUTH_TOKEN_CHARACTER_LENGTH': 64,
-  'TOKEN_TTL': timedelta(minutes=10),
-  'USER_SERIALIZER': 'knox.serializers.UserSerializer',
-  'TOKEN_LIMIT_PER_USER': None,
-  'AUTO_REFRESH': True,
-  'EXPIRY_DATETIME_FORMAT': api_settings.DATETIME_FORMAT,
+    'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
+    'AUTH_TOKEN_CHARACTER_LENGTH': 64,
+    'TOKEN_TTL': timedelta(minutes=10),
+    'USER_SERIALIZER': 'knox.serializers.UserSerializer',
+    'TOKEN_LIMIT_PER_USER': None,
+    'AUTO_REFRESH': True,
+    'EXPIRY_DATETIME_FORMAT': api_settings.DATETIME_FORMAT,
 }
 
 REST_AUTH_SERIALIZERS = {
-    'PASSWORD_RESET_SERIALIZER': 
+    'PASSWORD_RESET_SERIALIZER':
         'yourproject_app.serializers.PasswordResetSerializer',
 }
 
@@ -176,15 +174,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'beatsbywarp@gmail.com'
-EMAIL_HOST_PASSWORD = 'gfwvm7da4d99'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
 MIDDLEWARE_CLASSES = (
-    'corsheaders.middleware.CorsMiddleware',  
-    'django.middleware.common.CommonMiddleware',  
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
-CORS_ORIGIN_ALLOW_ALL = True 
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 MEDIA_URL = '/media/'
