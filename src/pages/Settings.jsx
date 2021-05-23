@@ -23,21 +23,8 @@ let edditCompany;
 export default function Settings() {
   const [ token, setToken ] = React.useState("");
   const [ rows, setRows ] = React.useState([]);
-  const [ accounts, setAccounts ]  = React.useState([
-    { name: "Иванов Сергей Иванович", number: "+7 (123) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
-    { name: "Иванов Иван Иванович", number: "+7 (942) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
-    { name: "Иванов Александр Иванович", number: "+7 (918) 047-55-66", email: "usermail@mail.ru", active: false, companies: []},
-    { name: "Иванов Николай Иванович", number: "+7 (973) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
-    { name: "Иванов Сергей Иванович", number: "+7 (971) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
-  ]);
-
-  const [ defaultAccounts, setDefaultAccounts ] = React.useState([
-    { name: "Иванов Сергей Иванович", number: "+7 (123) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
-    { name: "Иванов Иван Иванович", number: "+7 (942) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
-    { name: "Иванов Александр Иванович", number: "+7 (918) 047-55-66", email: "usermail@mail.ru", active: false, companies: []},
-    { name: "Иванов Николай Иванович", number: "+7 (973) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
-    { name: "Иванов Сергей Иванович", number: "+7 (971) 047-55-66", email: "usermail@mail.ru", active: true, companies: []},
-  ]);
+  const [ accounts, setAccounts ]  = React.useState([]);
+  const [ defaultAccounts, setDefaultAccounts ] = React.useState([]);
 
   const [ companies, setCompanies ] = React.useState([
     { company: "258: Покровка 10 (p10 Мск)", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
@@ -70,6 +57,28 @@ export default function Settings() {
     setOpenAddAccountModal(false);
   };
 
+  function postNewUsers(massive) {
+    const postUsers = async () => {
+      let request = await fetch("http://127.0.0.1:8000/api/accounts/auth/register", {
+        method: "POST",
+        body: JSON.stringify({
+          email: massive.email,
+          phone_number: massive.number,
+          full_name: massive.name,
+          password: "123"
+        }),
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+
+      if (request.status == 200) {
+        console.log(request);
+      } else console.log(request)
+    };
+    postUsers();
+  };
+
   React.useEffect(() => {
     async function getUsers() {
       let request = await fetch("http://127.0.0.1:8000/api/accounts/users/", {
@@ -81,8 +90,17 @@ export default function Settings() {
       let requestMassive = [];
       let answer = await request.json();
       if (request.status == 200) {
-        answer.forEach(answ => requestMassive = [...requestMassive, answ]);
-        console.log(requestMassive);
+        answer.forEach(answ => {
+          requestMassive = [...requestMassive, {
+            name: answ.full_name,
+            number: answ.phone_number,
+            email: answ.email,
+            active: answ.is_active,
+            companies: []
+          }];
+        });
+        setAccounts(requestMassive);
+        setDefaultAccounts(requestMassive);
       } else console.error(answer);
     };
     getUsers();
@@ -131,6 +149,7 @@ export default function Settings() {
                   document.querySelector("#add").style.display = "none";
                   document.querySelector(".black-set-bg").style.display = "none";
                   setNewCompanies([]);
+                  postNewUsers(newAccount);
                 };
               }}>Добавить</button>
             </div>

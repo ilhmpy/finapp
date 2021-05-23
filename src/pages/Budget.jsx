@@ -46,53 +46,17 @@ export default function Budget() {
   const [ budget, setBudget ] = useState([
     {date: "10.05.2021", income: [
       {contragent: "В-отчет", sum: "301.00", description: "Z-отчёт по смене", contributed: "Иванов И.И", checked: false},
-      {contragent: "В-отчет", sum: "204.00", description: "Z-отчёт по смене", contributed: "Иванов И.А", checked: false},
-      {contragent: "В-отчет", sum: "104.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-      {contragent: "Z-отчет", sum: "303.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
     ], expense: [
       {contragent: "Z-отчет", sum: "102.00", description: "Z-отчёт по смене", contributed: "Иванов И.И", checked: false},
-      {contragent: "Z-отчет", sum: "201.00", description: "Z-отчёт по смене", contributed: "Иванов И.А", checked: false},
-      {contragent: "Z-отчет", sum: "503.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-      {contragent: "Z-отчет", sum: "603.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
     ]},
-
-    {date: "11.03.2021", income: [
-      {contragent: "В-отчет", sum: "804.00", description: "Z-отчёт по смене", contributed: "Иванов И.И", checked: false},
-      {contragent: "В-отчет", sum: "904.00", description: "Z-отчёт по смене", contributed: "Иванов И.А", checked: false},
-      {contragent: "В-отчет", sum: "110.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-      {contragent: "Z-отчет", sum: "433.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-    ], expense: [
-      {contragent: "Z-отчет", sum: "453.00", description: "Z-отчёт по смене", contributed: "Иванов И.И", checked: false},
-      {contragent: "Z-отчет", sum: "481.00", description: "Z-отчёт по смене", contributed: "Иванов И.А", checked: false},
-      {contragent: "Z-отчет", sum: "520.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-      {contragent: "Z-отчет", sum: "621.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-    ]}
   ]);
 
   const [ defaultBudget, setDefaultBudget ] = useState([
     {date: "10.05.2021", income: [
       {contragent: "В-отчет", sum: "301.00", description: "Z-отчёт по смене", contributed: "Иванов И.И", checked: false},
-      {contragent: "В-отчет", sum: "204.00", description: "Z-отчёт по смене", contributed: "Иванов И.А", checked: false},
-      {contragent: "В-отчет", sum: "104.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-      {contragent: "Z-отчет", sum: "303.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
     ], expense: [
       {contragent: "Z-отчет", sum: "102.00", description: "Z-отчёт по смене", contributed: "Иванов И.И", checked: false},
-      {contragent: "Z-отчет", sum: "201.00", description: "Z-отчёт по смене", contributed: "Иванов И.А", checked: false},
-      {contragent: "Z-отчет", sum: "503.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-      {contragent: "Z-отчет", sum: "603.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
     ]},
-
-    {date: "11.03.2021", income: [
-      {contragent: "В-отчет", sum: "804.00", description: "Z-отчёт по смене", contributed: "Иванов И.И", checked: false},
-      {contragent: "В-отчет", sum: "904.00", description: "Z-отчёт по смене", contributed: "Иванов И.А", checked: false},
-      {contragent: "В-отчет", sum: "110.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-      {contragent: "Z-отчет", sum: "433.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-    ], expense: [
-      {contragent: "Z-отчет", sum: "453.00", description: "Z-отчёт по смене", contributed: "Иванов И.И", checked: false},
-      {contragent: "Z-отчет", sum: "481.00", description: "Z-отчёт по смене", contributed: "Иванов И.А", checked: false},
-      {contragent: "Z-отчет", sum: "520.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-      {contragent: "Z-отчет", sum: "621.00", description: "Z-отчёт по смене", contributed: "Иванов И.В", checked: false},
-    ]}
   ]);
 
   useEffect(() => {
@@ -113,8 +77,55 @@ export default function Budget() {
         console.error(res);
       }
     };
+
+    async function getIncome() {
+      let request = await fetch("http://127.0.0.1:8000/api/app/budget/income/", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+
+      let answer = await request.json();
+      if (request.status === 200) {
+        console.log(`SUCCESFULLY: ${JSON.stringify(answer)}`);
+      } else console.log(`ERROR: ${JSON.stringify(answer)}`);
+    };
+
+    async function getExpense() {
+
+    };
+
+    getIncome();
+    getExpense();
     getUser();
   }, []);
+
+  function addIncome(massive, date) {
+    const add = async () => {
+      let request = await fetch("http://127.0.0.1:8000/api/app/budget/income/", {
+        method: "POST",
+        body: JSON.stringify({
+          amount: massive.sum,
+          description: massive.description,
+          is_verified: massive.checked,
+          contragent: massive.contragent,
+          added_at: date,
+          added_by: massive.contributed,
+          category: "",
+          facility: 0
+        }),
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+
+      if (request.status === 200) {
+        console.log(request);
+      } else console.log(request);
+    };
+    add();
+  };
 
   return (
     <div className="budget">
@@ -182,6 +193,8 @@ export default function Budget() {
                   checked: accept
                 }
 
+                let date = document.querySelector("#add-income-date").value.length > 0 ? document.querySelector("#add-income-date").value : Funcs.getDate()
+
                 if (budget.find(bd => {
                   if (bd.date == document.querySelector("#add-income-date").value) {
                     dateIndex = budget.indexOf(bd);
@@ -189,8 +202,8 @@ export default function Budget() {
                   }
                 })) budget[dateIndex].income = [...budget[dateIndex].income, newIncome];
 
-                else setBudget(bd => [...budget, {date: document.querySelector("#add-income-date").value, income: [newIncome], expense: []}]);
-
+                else setBudget(bd => [...budget, {date: date, income: [newIncome], expense: []}]);
+                addIncome(newIncome, date);
                 setBudget(bd => bd.map(s => s));
                 Funcs.changeStateDomElement("", document.querySelector(".black-bd-bg"));
                 Funcs.changeStateDomElement("", document.querySelector("#add-income"));

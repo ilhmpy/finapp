@@ -24,64 +24,7 @@ function Registry() {
         comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгеddнерировать несколько ...",
         acceptChecked: false
       },
-      { id: 2, company: "ИП Новикова Юлия Викторовна", innerChecked: false, number: "29625/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгеddнерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ИП Новикова Юлия Викторовна", innerChecked: false, firstChecked: false, number: "29235/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгеddнерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 4, company: "ИП Новикова Юлия Викторовна", innerChecked: false, firstChecked: false, number: "29615/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгеddнерировать несколько ...",
-        acceptChecked: false
-      }
-    ]
-    },
-    { date: "10.03.2020",  allChecked: false, files: [
-      { id: 1, company: "ООО Джи Эф Си", innerChecked: false, number: "21335/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмаaaстеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 2, company: "ООО Джи Эф Си", innerChecked: false, number: "21635/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмаaaстеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ООО Джи Эф Си", innerChecked: false, number: "21335/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмаaaстеру сгенерировать несколько ...",
-        acceptChecked: false
-      }
-    ]
-    },
-    { date: "10.05.2020", allChecked: false, files: [
-      { id: 1, company: "ООО Джи Эф Си", innerChecked: false, number: "19631/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебsadasdмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 2, company: "ООО Джи Эф Си", innerChecked: false, number: "22131/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебsadasdмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ООО Джи Эф Си", innerChecked: false, number: "23654/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебsadasdмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      }
-    ]
-    },
-    { date: "10.08.2020",  allChecked: false, files: [
-      { id: 3, company: "ИП Новикова Юлия Викторовна", innerChecked: false, number: "296135/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмасddтеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ИП Новикова Юлия Викторовна", innerChecked: false, number: "296335/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ИП Новикова Юлия Викторовна", innerChecked: false, number: "293635/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      }
-    ]
+     ]
     },
   ]);
 
@@ -91,64 +34,7 @@ function Registry() {
         comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгеddнерировать несколько ...",
         acceptChecked: false
       },
-      { id: 2, company: "ИП Новикова Юлия Викторовна", innerChecked: false, number: "29625/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгеddнерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ИП Новикова Юлия Викторовна", innerChecked: false, firstChecked: false, number: "29235/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгеddнерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 4, company: "ИП Новикова Юлия Викторовна", innerChecked: false, firstChecked: false, number: "29615/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгеddнерировать несколько ...",
-        acceptChecked: false
-      }
-    ]
-    },
-    { date: "10.03.2020",  allChecked: false, files: [
-      { id: 1, company: "ООО Джи Эф Си", innerChecked: false, number: "21335/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмаaaстеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 2, company: "ООО Джи Эф Си", innerChecked: false, number: "21635/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмаaaстеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ООО Джи Эф Си", innerChecked: false, number: "21335/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмаaaстеру сгенерировать несколько ...",
-        acceptChecked: false
-      }
-    ]
-    },
-    { date: "10.05.2020", allChecked: false, files: [
-      { id: 1, company: "ООО Джи Эф Си", innerChecked: false, number: "19631/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебsadasdмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 2, company: "ООО Джи Эф Си", innerChecked: false, number: "22131/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебsadasdмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ООО Джи Эф Си", innerChecked: false, number: "23654/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебsadasdмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      }
-    ]
-    },
-    { date: "10.08.2020",  allChecked: false, files: [
-      { id: 3, company: "ИП Новикова Юлия Викторовна", innerChecked: false, number: "296135/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмасddтеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ИП Новикова Юлия Викторовна", innerChecked: false, number: "296335/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      },
-      { id: 3, company: "ИП Новикова Юлия Викторовна", innerChecked: false, number: "293635/DD", type: "Б", sum: "11266,81", nds: "1077,6",
-        comment: "Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько ...",
-        acceptChecked: false
-      }
-    ]
+     ]
     },
   ]);
 
@@ -161,6 +47,50 @@ function Registry() {
 
   const [ modalCalendarOpen, setModalCalendarOpen ] = useState(false);
   const [ range, setRange ] = useState([]);
+
+  useEffect(() => {
+    async function getRegistry() {
+      let request = await fetch("http://127.0.0.1:8000/api/app/invoice/", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+      let answer = await request.json();
+      if (request.status === 200) {
+        console.log(answer);
+      } else console.log(answer);
+    };
+    getRegistry();
+  }, []);
+
+  function addRegistryItem(massive) {
+    const addItem = async () => {
+      let request = await fetch("http://127.0.0.1:8000/api/app/invoice/", {
+        method: "POST",
+        body: JSON.stringify({
+          added_at: massive.date,
+          invoice_number: massive.files[0].number,
+          amount: massive.files[0].sum,
+          tax_amount: "",
+          comment: massive.files[0].comment,
+          payment_type: massive.files[0].type,
+          is_confirmed: massive.files[0].innerChecked,
+          added_by: 0,
+          importer: 0,
+          facility: 0
+        }),
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+
+      if (request.status === 200) {
+        console.log(request);
+      } else console.log(request);
+    };
+    addItem();
+  };
 
   return (
     <div className="registry">
@@ -256,6 +186,7 @@ function Registry() {
                 );
                 Funcs.addDocument(newWaybill, setRegistry, setDefaultRegistry);
                 document.querySelector(".add-window").style.display = "none";
+                addRegistryItem(newWaybill);
                 document.querySelector(".black-registry-bg").style.display = "none";
               }
             }}>Добавить</button>

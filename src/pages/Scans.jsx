@@ -21,30 +21,12 @@ export default function Scans() {
   const [data, setData] = useState([
     createData('13.05.2021', [
       { type: 'Сканы', name: 'Джиэфси27.12.2019.jpg', id: 0, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2020.jpg', id: 1, checked: false, document: [] },
-      { type: 'Уставные документы', name: 'Джиэфси27.12.2018.jpg', id: 2, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2015.jpg', id: 3, checked: false, document: [] },
-    ]),
-    createData('25.01.2021', [
-      { type: 'Расходы', name: 'Джиэфси27.12.2017.jpg', id: 0, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2016.jpg', id: 1, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2010.jpg', id: 2, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2014.jpg', id: 3, checked: false, document: [] },
     ]),
   ]);
 
   const [ prevData, setPrevData ] = React.useState([
     createData('13.05.2021', [
       { type: 'Сканы', name: 'Джиэфси27.12.2019.jpg', id: 0, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2020.jpg', id: 1, checked: false, document: [] },
-      { type: 'Уставные документы', name: 'Джиэфси27.12.2018.jpg', id: 2, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2015.jpg', id: 3, checked: false, document: [] },
-    ]),
-    createData('25.01.2021', [
-      { type: 'Расходы', name: 'Джиэфси27.12.2017.jpg', id: 0, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2016.jpg', id: 1, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2010.jpg', id: 2, checked: false, document: [] },
-      { type: 'Накладная', name: 'Джиэфси27.12.2014.jpg', id: 3, checked: false, document: [] },
     ]),
   ]);
 
@@ -126,14 +108,36 @@ export default function Scans() {
       });
 
       let answer = await request.json();
-      console.log(answer.status)
-      if (answer.status == 200) {
-        console.log(answer)
-      } else {}
-    };
+      if (request.status == 200) {
+        if (answer.length > 0) {
 
+        } else setData(answer);
+      } else console.log(answer);
+    };
     getScans();
   }, []);
+
+  function addScan(massive) {
+    const fetchScan = async () => {
+      let request = await fetch("http://127.0.0.1:8000/api/app/scan/", {
+        method: "POST",
+        body: JSON.stringify({
+          type_scan: massive.type,
+          name: massive.name,
+          file: massive.document,
+          facility: "0"
+        }),
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+      let answer = await request.json();
+      if (request.status == 200) {
+
+      } else {}
+    };
+    fetchScan();
+  };
 
   return (
     <div className="Scans">
@@ -160,14 +164,9 @@ export default function Scans() {
           <button className="add__btn" onClick={e => {
               Funcs.clearAdd(".add_scan_input");
               if (scan.name != undefined) {
-                addDocument (
-                  {
-                    date: getDate(), files: [
-                        { type: 'Уставные документы', name: scan.name, id: 0, checked: false, document: scan }
-                    ]
-                  }
-                );
-
+                let newScan = {date: getDate(), files: [{ type: 'Уставные документы', name: scan.name, id: data.length, checked: false, document: scan }]}
+                addDocument(newScan);
+                addScan(newScan);
                 document.querySelector(".black-scans-bg").style.display = "none";
                 document.querySelector("#add-scan-window").style.display = "none";
               }

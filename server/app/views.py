@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status, generics, filters, permissions
 from rest_framework.views import APIView
 from django_filters.rest_framework import DjangoFilterBackend
-
+from datetime import datetime
 import django_filters
 
 from accounts.models import Role, User
@@ -152,12 +152,22 @@ class RevenueList(generics.ListCreateAPIView):
   queryset = Revenue.objects.all()
   serializer_class = RevenueSerializer
   filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
-  ordering_fields = ['cash_income', 'cash_free_income', 'np', 'added_at']
+  ordering_fields = ['cash_income',  'added_at']
   filterset_class = RevenueDateFilter
+  dataTime = datetime.now().date()
   def get(self, request, format=None):
-    candidates = Revenue.objects.all()
-    serializer = RevenueSerializer(candidates, many=True)
-    return Response(data=serializer.data, status=status.HTTP_200_OK)
+    dataTime = datetime.now().date()
+    dayli = Revenue.objects.get(added_at=dataTime).cash_income
+    graf = Revenue.objects.filter(added_at=dataTime)[1:7]
+
+    sum_1 = 0
+    week1 = Revenue.objects.filter(added_at=dataTime)[1:5]
+    for i in week1:
+      sum_1 += i.cash_income
+
+
+    serializer = RevenueSerializer(graf, many=True)
+    return Response(sum_1,  dayli, data=serializer.data ,status=status.HTTP_200_OK  )
 
 
 class RevenueDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -181,7 +191,7 @@ class ScanClass(generics.ListCreateAPIView):
     serializer = ScanSerializer(scan, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
   def post(self, request):
-    serializer = InvoiceSerializer(data=request.data)
+    serializer = ScanSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
       saved = serializer.save()
     return Response(data=serializer.data, status=status.HTTP_201_CREATED)
