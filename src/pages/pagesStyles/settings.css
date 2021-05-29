@@ -126,17 +126,19 @@
 }
 
 .company__category:nth-child(1) {
-  width: 116px;
+  width: 190px;
 }
 
 .company__category:nth-child(2) {
    position: absolute;
    right: 0;
+   width: 134px;
    margin-right: -7px;
 }
 
 .company__file-item:nth-child(1) {
   width: 237px;
+  text-align: center;
 }
 
 .company__file-item:nth-child(2) {

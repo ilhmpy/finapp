@@ -34,17 +34,19 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
 
 
-class RegisterAPI(generics.GenericAPIView):
-    serializer_class = RegisterSerializer
-
-    def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response({
-            "user": UserSerializer(user, context=self.get_serializer_context()).data,
-            "token": AuthToken.objects.create(user)[1],
-        })
+# class RegisterAPI(generics.GenericAPIView):
+#     serializer_class = RegisterSerializer
+#     def post(self, request, *args, **kwargs):
+#
+#         serializer = self.get_spyerializer(data=request.data)
+#
+#         serializer.is_valid(raise_exception=True)
+#         user = serializer.save()
+#
+#         return Response({
+#             "user": UserSerializer(user, context=self.get_serializer_context()).data,
+#             "token": AuthToken.objects.create(user)[1],
+#         })
 
 
 class LoginAPI(generics.GenericAPIView):
@@ -114,3 +116,16 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
     )
     msg.attach_alternative(email_html_message, "text/html")
     msg.send()
+
+
+class RegisAccount(generics.ListCreateAPIView):
+    serializer_class = RegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_spyerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1],
+        })

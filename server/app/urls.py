@@ -3,15 +3,15 @@ from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    #budget views
+    # budget views
     path('budget/', include('budget.urls')),
-    #employees views
+    # employees views
     path('employees/', views.EmployeeList.as_view()),
     path('employees/<str:pk>', views.EmployeeDetail.as_view()),
-    #admin panel views
+    # admin panel views
     path('facilities/', views.FacilityList.as_view()),
     path('facilities/<str:pk>', views.FacilityDetail.as_view()),
-    #revenue views
+    # revenue views
     path('revenue/', views.RevenueList.as_view()),
     path('revenue/<str:pk>', views.RevenueDetail.as_view()),
 
@@ -23,4 +23,6 @@ urlpatterns = [
     path('scan/<str:pk>', views.ScanDetail.as_view()),
     path('invoice/', views.InvoiceList.as_view()),
     path('invoice/<str:pk>', views.InvoicDetail.as_view()),
+    path('salary/', views.SalaryView.as_view()),
+    path('salary/hours', views.HoursPerDay.as_view()),
 ]

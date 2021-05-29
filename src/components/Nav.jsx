@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import "./componentsStyles/Nav.css";
 import "../pages/pagesStyles/main.css";
@@ -6,16 +7,23 @@ import arrow_down from "./componentsStyles/img/arrow_down.svg";
 import ava from "./componentsStyles/img/ava.svg";
 
 export default function Nav() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [value, setValue] = React.useState(0);
+  const [ user, setUser ] = useState([]);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  useEffect(() => {
+    async function fetchUser() {
+        let token = localStorage.getItem("token");
+        let request = await fetch("http://127.0.0.1:8000/api/accounts/auth/get-user", {
+          method: "GET",
+          headers: {
+            Authorization: `Token ${token}`
+          }
+        });
+        let response = await request.json();
+        if (request.status == 200) setUser(response);
+        else console.error(response);
+      };
+    fetchUser();
+  }, [])
 
   return (
     <header className="header">
@@ -42,11 +50,11 @@ export default function Nav() {
         </div>
         <div className="header__account">
           <div className="account__img">
-            <img src={ava} alt="ava" />
+            <img src={user.ava != undefined ? user.ava : ava} alt="ava" />
           </div>
           <span>
-            <h4 className="account__name">Иван Иванов</h4>
-            <h6 className="account__position">Менеджер</h6>
+            <h4 className="account__name">{user.full_name != undefined ? user.full_name : ""}</h4>
+            <h6 className="account__position">{user.position != undefined ? user.position : "Менеджер"}</h6>
           </span>
         </div>
       </div>

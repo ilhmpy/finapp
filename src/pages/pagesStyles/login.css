@@ -244,3 +244,9 @@
      padding-top: 450px;
    }
 }
+
+@media only screen and (min-device-width: 2500px) {
+  .login__black-bg {
+    height: 1400px;
+  }
+}

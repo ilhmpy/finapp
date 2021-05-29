@@ -10,7 +10,7 @@ import "./pagesStyles/settings.css";
 import Functions from "./Functions.js";
 
 function createData(name, type, comment, id) {
-  return { name, type, comment, id};
+  return { name, type, comment, id };
 }
 
 const Funcs = new Functions();
@@ -26,36 +26,13 @@ export default function Settings() {
   const [ accounts, setAccounts ]  = React.useState([]);
   const [ defaultAccounts, setDefaultAccounts ] = React.useState([]);
 
-  const [ companies, setCompanies ] = React.useState([
-    { company: "258: Покровка 10 (p10 Мск)", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-    { company: "ООО Джи Эф Си", work: true, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: "" },
-    { company: "ИП Новикова Юлия Викторовна", work: true, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-    { company: "ООО Уборка на дом", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-    { company: "ООО Магазин холодильников", work: true, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-    { company: "ООО Карельские камни", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-  ]);
-
-  const [ defaultCompanies, setDefaultCompanies ] = React.useState([
-    { company: "258: Покровка 10 (p10 Мск)", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-    { company: "ООО Джи Эф Си", work: true, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: "" },
-    { company: "ИП Новикова Юлия Викторовна", work: true, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-    { company: "ООО Уборка на дом", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-    { company: "ООО Магазин холодильников", work: true, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-    { company: "ООО Карельские камни", work: false, inn: "", bank: "", bic: "", commentary: "", ress: "", corres: ""},
-  ]);
+  const [ companies, setCompanies ] = React.useState([]);
+  const [ defaultCompanies, setDefaultCompanies ] = React.useState([]);
 
   const [ openAddAccountModal, setOpenAddAccountModal ] = useState(false);
   const [ newCompanies, setNewCompanies ] = useState([]);
   const [ currentAccEddit, setCurrentAccEddit ] = useState([]);
   const [ currentCompanyEddit, setCurrentCompanyEddit ] = useState([]);
-
-  const handleClickOpenAddAccountModal = () => {
-    setOpenAddAccountModal(true);
-  };
-
-  const handleCloseAddAccountModal = () => {
-    setOpenAddAccountModal(false);
-  };
 
   function postNewUsers(massive) {
     const postUsers = async () => {
@@ -65,7 +42,6 @@ export default function Settings() {
           email: massive.email,
           phone_number: massive.number,
           full_name: massive.name,
-          password: "123"
         }),
         headers: {
           "content-type": "application/json"
@@ -77,6 +53,56 @@ export default function Settings() {
       } else console.log(request)
     };
     postUsers();
+  };
+
+  function addFacility(massive) {
+    const fetchFacility = async () => {
+      let request = await fetch("http://127.0.0.1:8000/api/app/facilities/", {
+        method: "POST",
+        body: JSON.stringify({
+          id: companies.length,
+          name: massive.company,
+          bank_name: massive.bank,
+          correspondent_account: massive.corres,
+          inn: massive.inn,
+          bik: massive.bic,
+          expense_account: massive.ress,
+          comment: massive.commentary,
+          is_active: massive.work
+        }),
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+      let response = await request.json();
+      console.log(`request: ${request.status}`, request);
+    };
+    fetchFacility();
+  };
+
+  function edditFacility(massive) {
+    console.log(massive)
+    const fetchFacility = async () => {
+      let request = await fetch(`http://127.0.0.1:8000/api/app/facilities/${massive.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+            name: massive.company,
+            bank_name: massive.bank,
+            correspondent_account: massive.corres,
+            inn: massive.inn,
+            bik: massive.bic,
+            expense_account: massive.ress,
+            comment: massive.commentary,
+            is_active: massive.work
+        }),
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+      let response = await request.json();
+      console.log(request);
+    };
+    fetchFacility();
   };
 
   React.useEffect(() => {
@@ -103,6 +129,27 @@ export default function Settings() {
         setDefaultAccounts(requestMassive);
       } else console.error(answer);
     };
+
+    async function getFacilities() {
+      let request = await fetch("http://127.0.0.1:8000/api/app/facilities/", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+      let fetchCompanies = [];
+      let response = await request.json();
+      if (request.status == 200) {
+        response.forEach(res => fetchCompanies = [...fetchCompanies, {
+           id: res.id, company: res.name, work: res.is_active,
+           inn: res.inn, bank: res.bank_name, bic: res.bik,
+           commentary: res.comment, ress: res.expense_account, corres: res.correspondent_account
+         }]);
+         setCompanies(fetchCompanies);
+         setDefaultCompanies(fetchCompanies);
+      } else console.error(`${request.status} - ${request}`);
+    };
+    getFacilities();
     getUsers();
   }, []);
 
@@ -297,7 +344,7 @@ export default function Settings() {
             companies.forEach(company => {
               if (company.company == currentCompanyEddit.company) {
                 company.work = !company.work;
-                console.log(company)
+                edditFacility(company);
                 Funcs.changeStateDomElement("", document.querySelector("#eddit-company"));
                 Funcs.changeStateDomElement("", document.querySelector(".black-set-bg"));
                 setCompanies(compan => compan.map(comp => comp));
@@ -355,7 +402,8 @@ export default function Settings() {
                     ) {
                       companies.forEach(company => {
                         if (company.company == currentCompanyEddit.company) {
-                          companies[companies.indexOf(company)] = {
+                          let companyEddit = {
+                            id: company.id,
                             company: document.querySelector("#eddit-company-name").value,
                             inn: document.querySelector("#eddit-company-inn").value,
                             bank: document.querySelector("#eddit-company-bank").value,
@@ -364,14 +412,16 @@ export default function Settings() {
                             res: document.querySelector("#eddit-company-res").value,
                             commentary: document.querySelector("#eddit-company-commentary").value,
                             work: company.work
-                          }
+                          };
+                          companies[companies.indexOf(company)] = companyEddit;
+                          edditFacility(companyEddit);
                           setCompanies(comp => comp.map(s => s));
                           document.querySelector(".black-set-bg").style.display = "none";
                           document.querySelector("#eddit-company").style.display = "none";
                         };
                       });
                     };
-                }}>Добавить</button>
+                }}>Сохранить</button>
               </div>
             </div>
             <div className="add__company__list-companies"></div>
@@ -442,7 +492,7 @@ export default function Settings() {
                       setDefaultCompanies(companies => [...companies, newCompany]);
                       setCompanies(companies => companies.map(comp => comp));
                       setDefaultCompanies(companies => companies.map(comp => comp));
-
+                      addFacility(newCompany);
                       document.querySelector(".black-set-bg").style.display = "none";
                       document.querySelector("#add-company").style.display = "none";
                     }

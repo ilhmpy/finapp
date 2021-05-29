@@ -109,9 +109,11 @@ export default function Scans() {
 
       let answer = await request.json();
       if (request.status == 200) {
-        if (answer.length > 0) {
-
-        } else setData(answer);
+          answer.forEach(answ => {
+            data.forEach(dt => {
+              
+            });
+          });
       } else console.log(answer);
     };
     getScans();
@@ -122,10 +124,10 @@ export default function Scans() {
       let request = await fetch("http://127.0.0.1:8000/api/app/scan/", {
         method: "POST",
         body: JSON.stringify({
-          type_scan: massive.type,
+          type_scan: "4",
           name: massive.name,
           file: massive.document,
-          facility: "0"
+          facility: 0
         }),
         headers: {
           "content-type": "application/json"
@@ -134,7 +136,8 @@ export default function Scans() {
       let answer = await request.json();
       if (request.status == 200) {
 
-      } else {}
+      };
+      console.error(`${request.status} - ${JSON.stringify(answer)}`);
     };
     fetchScan();
   };
@@ -283,7 +286,7 @@ export default function Scans() {
         </div>
         <div className="Scans__cards">
           {
-          data.map(dt => {
+            data.length > 0 ? data.map(dt => {
             if (dt.files.length > 0) {
               return (
                 <div className="Scans__card" id={index++} key={index}>
@@ -338,7 +341,7 @@ export default function Scans() {
               );
             };
           }
-        )
+        ) : ""
       }
     </div>
   </div>

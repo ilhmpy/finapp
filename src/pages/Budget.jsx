@@ -88,12 +88,23 @@ export default function Budget() {
 
       let answer = await request.json();
       if (request.status === 200) {
-        console.log(`SUCCESFULLY: ${JSON.stringify(answer)}`);
-      } else console.log(`ERROR: ${JSON.stringify(answer)}`);
+
+      };
+      console.log(`${request.status} - ${JSON.stringify(answer)}`);
     };
 
     async function getExpense() {
+      let request = await fetch("http://127.0.0.1:8000/api/app/budget/expense/", {
+        method: "GET",
+        headers: {
+          "content-type": "application/json"
+        }
+      });
+      let response = await request.json();
+      if (request.status == 200) {
 
+      };
+      console.log(`${request.status} - ${JSON.stringify(response)}`);
     };
 
     getIncome();

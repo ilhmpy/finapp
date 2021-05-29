@@ -25,8 +25,8 @@ from . import settings
 schema_view = get_swagger_view(title='Finapp API')
 
 urlpatterns = [
-    path('', schema_view),
-    path('admin/', admin.site.urls),
+    path('', schema_view, name="swagger"),
+    path('admin/', admin.site.urls, name="admin"),
     path('api/app/', include('app.urls')),
     path('api/accounts/', include('accounts.urls')),
 ]
